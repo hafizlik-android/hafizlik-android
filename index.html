@@ -4,388 +4,402 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#dceefa">
 <title>Hafızlık Bahçem</title>
 <style>
+:root{--blue:#286aa5;--deep:#17446d;--pale:#eaf5ff;--bg:#f3f8ff;--line:#d6e6f5;--green:#387d58}
 *{box-sizing:border-box}
-body{margin:0;background:#edf6fc;color:#284e68;font-family:Arial,sans-serif}
-header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 17px;background:#dceefa;box-shadow:0 2px 10px #284e6815}
-.brand{font-weight:bold;font-size:20px}
-button{border:0;border-radius:13px;background:#397eaa;color:white;padding:12px 15px;font-size:15px;cursor:pointer}
-button:disabled{opacity:.5}
-.menuBtn{background:transparent;color:#285b7b;font-size:27px;padding:5px 10px}
-main{max-width:760px;margin:auto;padding:14px}
-.card{background:white;border-radius:21px;padding:19px;margin:13px 0;box-shadow:0 4px 15px #9bbbd022}
-h1,h2{color:#2d668a}
-h1{font-size:25px}
-h2{font-size:20px}
+body{margin:0;background:var(--bg);color:#23435c;font-family:Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:13px;display:flex;align-items:center;gap:12px}
+.brand{font-size:19px;font-weight:800;color:var(--deep);flex:1}
+.btn{background:var(--blue);color:#fff;border:0;padding:11px 15px;border-radius:11px;font-weight:bold}
+.btn.light{background:var(--pale);color:var(--deep);border:1px solid var(--line)}
+.btn.red{background:#ad4855}
+.layout{display:flex;min-height:calc(100vh - 55px)}
+nav{width:230px;flex-shrink:0;background:#fff;padding:14px;border-right:1px solid var(--line)}
+nav button{display:block;width:100%;border:0;background:none;text-align:left;padding:13px 11px;border-radius:10px;color:#23435c;margin:2px 0}
+nav button.active,nav button:hover{background:var(--pale);color:var(--deep);font-weight:bold}
+main{max-width:1100px;width:100%;padding:20px;margin:auto}
+.page{display:none}.page.active{display:block}
+h1{font-size:26px;color:var(--deep);margin:6px 0 12px}
+h2{font-size:19px;color:var(--deep)}
+p{line-height:1.6}
+.card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px;margin:14px 0;box-shadow:0 5px 18px #1b56810a}
+.row{display:flex;gap:12px;align-items:end;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:7px;flex:1;min-width:140px;margin:7px 0}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cbdfee;border-radius:10px;background:#fff;color:#23435c}
+textarea{min-height:85px}
+.muted{font-size:13px;color:#66839c}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.stat{background:#edf6ff;border-radius:13px;text-align:center;padding:13px}
+.stat strong{display:block;font-size:23px;color:var(--deep);margin-bottom:5px}
+.hero{text-align:center;background:linear-gradient(140deg,#e0f1ff,#fff,#edf9f0);border:1px solid var(--line);padding:25px;border-radius:22px}
+.bismillah{font-family:serif;font-size:28px;color:var(--deep);line-height:1.9}
+.notice{padding:12px;background:#eff7ff;border-radius:10px;margin:10px 0}
+.quran{font-family:"Times New Roman",serif;font-size:29px;line-height:2;text-align:right;direction:rtl;color:#17446d}
+.ayah{padding:12px 0;border-bottom:1px dashed var(--line)}
+.farm{
+ position:relative;overflow:hidden;min-height:300px;border-radius:20px;
+ border:1px solid #c8e4d1;
+ background:linear-gradient(#cceaff 0%,#e9f7ff 45%,#d9efc9 46%,#b7dca4 100%);
+ padding:18px;
+}
+.sun{position:absolute;right:25px;top:22px;width:48px;height:48px;border-radius:50%;background:#fff0ac;box-shadow:0 0 30px #fff2aa}
+.hill{position:absolute;bottom:-80px;width:120%;height:170px;border-radius:50%;background:#a7d48d;left:-10%}
+.hill.two{bottom:-112px;left:20%;background:#86bf79}
+.farm-title{position:relative;z-index:1;color:#24583d;font-weight:bold}
+#focusTree{position:absolute;z-index:2;bottom:53px;left:50%;transform:translateX(-50%);height:190px;width:150px;display:flex;align-items:flex-end;justify-content:center}
+#focusTree svg{width:100%;height:100%;overflow:visible}
+.tree-stage{transform-origin:50% 100%;animation:sway 4s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+.grow-label{position:absolute;z-index:3;bottom:20px;left:0;right:0;text-align:center;color:#24583d;font-weight:bold}
+.timer{text-align:center;font-size:40px;font-weight:bold;color:var(--deep);font-variant-numeric:tabular-nums}
+.timer-sub{text-align:center;color:#65819a;font-size:13px}
+.forest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:10px}
+.forest-tree{background:linear-gradient(#edf8ff,#f0f9ed);border:1px solid var(--line);border-radius:13px;padding:12px 5px;text-align:center}
+.forest-tree .treeemoji{font-size:43px}
+.forest-tree small{display:block;color:#66839c;margin-top:4px}
+table{width:100%;border-collapse:collapse}
+td,th{text-align:left;padding:10px;border-bottom:1px solid var(--line);font-size:14px}
 .hidden{display:none!important}
-label{display:block;font-weight:bold;margin:12px 0 6px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #c5dce9;border-radius:11px;background:white;color:#284e68;font-size:16px}
-textarea{min-height:90px}
-input[type=checkbox]{width:auto}
-form button{margin-top:14px}
-.small{font-size:13px;color:#648095;line-height:1.6}
-.note{padding:13px;background:#f0f7fc;border-radius:13px;line-height:1.7}
-.home{background:linear-gradient(160deg,#eaf6ff,#d6e9f7,#f4faff);text-align:center;padding:28px 18px}
-.basmala{font-size:24px;line-height:2}
-.quranControls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ayah{padding:19px 8px;border-bottom:1px solid #e1edf4;text-align:center}
-.arabic{font-size:26px;line-height:2.1;direction:rtl;color:#234f70}
-.translation{line-height:1.8;margin-top:8px}
-.ayahNo{font-size:12px;color:#6e8da1}
-.progress{height:11px;border-radius:20px;background:#e3edf3;overflow:hidden}
-.bar{height:100%;background:#5c9e80;width:0;transition:width .3s}
-.trees{text-align:center;font-size:55px;line-height:1.8;overflow-wrap:anywhere;background:linear-gradient(#dff1ff,#e5f3e4);padding:22px 10px;border-radius:20px}
-.item{padding:12px 0;border-bottom:1px solid #e3edf3;overflow-wrap:anywhere;line-height:1.6}
-.rowBtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
-.rowBtns button{font-size:13px;padding:8px 10px}
-.danger{background:#a95757}
-.drawer{position:fixed;inset:0;background:#16364a77;z-index:10}
-.drawerPanel{margin-left:auto;width:min(88%,350px);height:100%;overflow:auto;padding:20px;background:#f5faff}
-.drawerPanel button{display:block;width:100%;text-align:left;margin:5px 0;background:white;color:#285b7b}
-.drawerPanel .close{width:auto;float:right;background:transparent;font-size:23px}
-footer{text-align:center;padding:24px;color:#648095}
-@media(max-width:430px){.quranControls{grid-template-columns:1fr}.arabic{font-size:23px}}
+@media(max-width:700px){
+ .layout{display:block}nav{display:none;width:100%;border-bottom:1px solid var(--line)}nav.open{display:block}
+ main{padding:12px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .timer{font-size:34px}.quran{font-size:25px}
+}
 </style>
 </head>
 <body>
 <header>
-  <div class="brand">🌸 Hafızlık Bahçem</div>
-  <button class="menuBtn" onclick="menu(true)" aria-label="Menüyü aç">☰</button>
+<button class="btn light" id="menuBtn">☰</button>
+<div class="brand">🌸 Hafızlık Bahçem</div>
+<button class="btn light" id="homeBtn">📖</button>
 </header>
-
+<div class="layout">
+<nav id="nav">
+<button class="active" data-page="quran">📖 Kur’an-ı Kerim</button>
+<button data-page="field">🌳 Tarlam ve Ağaçlar</button>
+<button data-page="memorize">✍️ Ezber Kaydı</button>
+<button data-page="repeat">🔁 Tekrar ve Muracaat</button>
+<button data-page="progress">📊 İlerlemem</button>
+<button data-page="notes">📝 Meal ve Notlar</button>
+<button data-page="settings">⚙️ Ayarlar</button>
+</nav>
 <main>
-<section id="home">
-  <div class="card home">
-    <div class="basmala">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-    <h1>Kur’an-ı Kerim</h1>
-    <p>Kur’an ile başla, ezberinle güçlen, tekrarlarınla pekiştir. 💙</p>
-    <div class="quranControls">
-      <div>
-        <label for="surahSelect">Sure seç</label>
-        <select id="surahSelect"></select>
-      </div>
-      <div>
-        <label for="editionSelect">Meal dili</label>
-        <select id="editionSelect">
-          <option value="tr.diyanet">Türkçe meal</option>
-        </select>
-      </div>
-    </div>
-    <div class="rowBtns">
-      <button onclick="loadSurah()">Sureyi getir</button>
-      <button onclick="show('memorize')">Ezberimi kaydet</button>
-    </div>
-    <p id="quranStatus" class="small" role="status">Kur’an metni yüklenmeye hazırlanıyor.</p>
-  </div>
-  <div class="card">
-    <h2>📖 Sure ve Ayetler</h2>
-    <div id="quranText"><p class="note">Sure metni internet bağlantısıyla yüklenecek.</p></div>
-  </div>
-  <div class="card">
-    <h2>🌷 Bugünün hatırlatması</h2>
-    <p>Her gün az da olsa Kur’an’a vakit ayır. İstikrarlı emek, hafızlık yolculuğunu güçlendirir.</p>
-  </div>
+
+<section id="quran" class="page active">
+<div class="hero">
+<div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+<h1>Kur’an-ı Kerim</h1>
+<p>Her gün bir ayet, her gün bir adım. 🌿</p>
+</div>
+<div class="card">
+<div class="row">
+<label class="field">Sure seçimi<select id="surah"><option value="1">1. Fâtiha</option></select></label>
+<button class="btn" id="loadQuran">Sureyi getir</button>
+</div>
+<div id="qstatus" class="notice">Sureler yükleniyor…</div>
+<div id="qtext"></div>
+</div>
 </section>
 
-<section id="field" class="hidden">
-  <div class="card">
-    <h1>🌱 Tarlam ve Ağaçlar</h1>
-    <p>Her tamamlanan günlük ezber hedefi ağacını büyütür.</p>
-    <div id="myTrees" class="trees">🌱</div>
-    <h2 id="treeStatus">Fidanın büyümeye hazır.</h2>
-    <p id="treeMessage">Bugün bir adım atman yeterli. 💙</p>
-    <p id="treeDays">Tamamlanan hedef günü: 0</p>
-    <div class="progress"><div id="fieldBar" class="bar"></div></div>
-    <p id="fieldGoal" class="small"></p>
-    <p class="note">Beş tamamlanan hedef günü yeni bir ağaç kazandırır. Bir gün aksarsa ağaç solabilir; yeniden hedefini tamamladığında yeşerir. Dinlenme günün hesaba katılmaz.</p>
-    <button onclick="show('memorize')">📖 Ezber kaydet</button>
-  </div>
+<section id="field" class="page">
+<h1>🌳 Tarlam ve Ağaçlar</h1>
+<p>Bir odaklanma oturumu başlat, fidanını büyüt ve kendi hafızlık ormanını oluştur.</p>
+<div class="card">
+<div class="stats">
+<div class="stat"><strong id="forestCount">0</strong>Ormanımdaki ağaç</div>
+<div class="stat"><strong id="focusCount">0</strong>Tamamlanan oturum</div>
+<div class="stat"><strong id="focusMinutes">0</strong>Odaklanma dakikası</div>
+</div>
+</div>
+<div class="card">
+<div class="farm">
+<div class="sun"></div><div class="hill"></div><div class="hill two"></div>
+<div class="farm-title">🌿 Benim huzurlu tarlam</div>
+<div id="focusTree">
+<svg viewBox="0 0 150 190" aria-label="Büyüyen ağaç">
+<g id="treeDrawing" class="tree-stage">
+<path d="M70 180 Q78 130 74 85 L87 70 Q80 125 86 180Z" fill="#795239"/>
+<g id="leaves" fill="#5aa96c">
+<circle cx="76" cy="35" r="0"/><circle cx="76" cy="57" r="0"/>
+<circle cx="57" cy="67" r="0"/><circle cx="95" cy="69" r="0"/>
+<circle cx="76" cy="82" r="0"/>
+</g>
+</g>
+</svg>
+</div>
+<div class="grow-label" id="growLabel">Yeni fidanın seni bekliyor 🌱</div>
+</div>
+<div style="padding-top:12px">
+<div class="timer" id="timer">25:00</div>
+<div class="timer-sub" id="timerSub">Odaklanma süreni seç ve fidanını büyüt.</div>
+<div class="row" style="margin-top:14px">
+<label class="field">Süre
+<select id="duration">
+<option value="10">10 dakika</option><option value="15">15 dakika</option>
+<option value="25" selected>25 dakika</option><option value="30">30 dakika</option>
+<option value="45">45 dakika</option><option value="60">60 dakika</option>
+</select></label>
+<label class="field">Oturum türü
+<select id="focusType"><option value="Ezber">Ezber</option><option value="Tekrar">Tekrar</option><option value="Kur’an okuma">Kur’an okuma</option></select>
+</label>
+</div>
+<div class="row">
+<button class="btn" id="start">🌱 Fidan dik ve başla</button>
+<button class="btn light" id="pause" disabled>⏸ Duraklat</button>
+<button class="btn light" id="cancel" disabled>İptal et</button>
+</div>
+<div id="focusStatus" class="notice">Başladığında ağacın süre boyunca büyüyecek.</div>
+</div>
+</div>
+<div class="card">
+<h2>🌲 Benim ormanım</h2>
+<p class="muted">Tamamlanan odaklanma oturumları burada birikir. Bir oturumu tamamlamak bir ağaç kazandırır.</p>
+<div id="forest" class="forest-grid"></div>
+</div>
+<div class="card">
+<h2>🌼 Bugünkü hedefim</h2>
+<p id="targetText"></p>
+<button class="btn" data-goto="memorize">Ezber kaydı ekle</button>
+</div>
 </section>
 
-<section id="memorize" class="hidden">
-  <div class="card">
-    <h1>📖 Ezber Kaydı</h1>
-    <form id="entryForm">
-      <label for="date">Tarih</label><input id="date" type="date" required>
-      <label for="pages">Ezberlenen sayfa</label><input id="pages" type="number" min="0" step="1" value="0" required>
-      <label for="juz">Ezberlenen cüz</label><input id="juz" type="number" min="0" step="0.1" value="0" required>
-      <button type="submit">Ezberimi kaydet 💙</button>
-    </form>
-    <p id="entryMsg" role="status"></p>
-  </div>
+<section id="memorize" class="page">
+<h1>✍️ Ezber Kaydı</h1>
+<div class="card">
+<div class="row">
+<label class="field">Tarih<input id="mdate" type="date"></label>
+<label class="field">Sayfa<input id="mpages" type="number" min="0.5" step="0.5" value="1"></label>
+<label class="field">Cüz<input id="mjuz" type="number" min="1" max="30"></label>
+</div>
+<label class="field">Sure / ayet<input id="mdetail" placeholder="Örn. Bakara 1–10"></label>
+<label class="field">Not<textarea id="mnote"></textarea></label>
+<button class="btn" id="saveM">Ezberimi kaydet</button>
+</div>
+<div class="card"><h2>Ezber geçmişim</h2><div id="mhist"></div></div>
 </section>
 
-<section id="repeat" class="hidden">
-  <div class="card">
-    <h1>🔁 Tekrar Programı</h1>
-    <form id="repeatForm">
-      <label for="repeatDate">Tarih</label><input id="repeatDate" type="date" required>
-      <label for="repeatPages">Sure veya sayfa aralığı</label><input id="repeatPages" placeholder="Bakara 1–10 veya 25. sayfa" required>
-      <label for="repeatCount">Tekrar sayısı</label><input id="repeatCount" type="number" min="1" value="1" required>
-      <label for="repeatNote">Not</label><textarea id="repeatNote" placeholder="Zorlandığın yerler..."></textarea>
-      <button type="submit">Tekrarı kaydet</button>
-    </form>
-    <h2>Tekrar Geçmişim</h2><div id="repeatList"></div>
-  </div>
+<section id="repeat" class="page">
+<h1>🔁 Tekrar ve Muracaat</h1>
+<div class="card">
+<label class="field">Tarih<input id="rdate" type="date"></label>
+<label class="field">Tekrar edilen sayfa<input id="rpages" type="number" min="0.5" step="0.5" value="5"></label>
+<label class="field">Sure / cüz / ayet<input id="rdetail"></label>
+<label class="field">Not<textarea id="rnote"></textarea></label>
+<button class="btn" id="saveR">Tekrarı kaydet</button>
+</div>
+<div class="card"><h2>Tekrar geçmişim</h2><div id="rhist"></div></div>
 </section>
 
-<section id="progress" class="hidden">
-  <div class="card">
-    <h1>📊 İlerlemem</h1>
-    <p id="totalPages">Toplam ezber: 0 sayfa</p>
-    <p id="totalJuz">Toplam cüz: 0</p>
-    <p id="goalText">Günlük hedef: 5 sayfa</p>
-    <p id="todayProgress">Bugünkü hedef: %0</p>
-    <div class="progress"><div id="progressBar" class="bar"></div></div>
-    <h2>Ezber Geçmişim</h2><div id="history"></div>
-  </div>
+<section id="progress" class="page">
+<h1>📊 İlerlemem</h1>
+<div class="card"><div class="stats">
+<div class="stat"><strong id="totalPages">0</strong>Ezber sayfası</div>
+<div class="stat"><strong id="totalRepeats">0</strong>Tekrar sayfası</div>
+<div class="stat"><strong id="totalDays">0</strong>Kayıtlı gün</div>
+</div></div>
+<div class="card"><h2>Günlük ezber kayıtları</h2><div id="phist"></div></div>
 </section>
 
-<section id="meal" class="hidden">
-  <div class="card">
-    <h1>📚 Meal ve Notlarım</h1>
-    <p class="small">Kur’an ekranındaki sure ve ayetleri okuyabilir, aşağıya kişisel meal notlarını kaydedebilirsin.</p>
-    <form id="mealForm">
-      <label for="surah">Sure adı ve ayet</label><input id="surah" placeholder="Fatiha 1" required>
-      <label for="mealType">Not biçimi</label>
-      <select id="mealType"><option>Tam meal</option><option>Kırık meal</option><option>Kişisel tefsir notu</option></select>
-      <label for="mealText">Meal veya notun</label><textarea id="mealText" required></textarea>
-      <label><input id="shareMeal" type="checkbox"> Toplulukta paylaşmak üzere işaretle</label>
-      <button type="submit">Notu kaydet</button>
-    </form>
-    <p class="small">Paylaşım işareti kaydedilir; herkese açık paylaşım henüz etkin değildir.</p>
-    <h2>Kaydettiğim Notlar</h2><div id="mealList"></div>
-  </div>
+<section id="notes" class="page">
+<h1>📝 Meal ve Notlarım</h1>
+<div class="card">
+<label class="field">Not türü<select id="ntype"><option>Tam meal</option><option>Kırık meal</option><option>Tefsir / hatırlatma</option></select></label>
+<label class="field">Sure / ayet<input id="nref" placeholder="Örn. İhlâs 1–4"></label>
+<label class="field">Meal veya not<textarea id="ntext"></textarea></label>
+<label><input id="nshare" type="checkbox" style="width:auto"> Toplulukta paylaşılmak üzere işaretle</label>
+<p class="muted">Bu seçenek notu internette paylaşmaz; yalnızca tercihini kaydeder.</p>
+<button class="btn" id="saveN">Notumu kaydet</button>
+</div>
+<div class="card"><h2>Kayıtlı notlarım</h2><div id="nhist"></div></div>
 </section>
 
-<section id="settings" class="hidden">
-  <div class="card">
-    <h1>⚙️ Ayarlar</h1>
-    <label for="goal">Günlük ezber hedefi (sayfa)</label><input id="goal" type="number" min="1" step="1" value="5">
-    <label for="restDay">Dinlenme günü</label>
-    <select id="restDay">
-      <option value="0">Pazar</option><option value="1">Pazartesi</option>
-      <option value="2">Salı</option><option value="3">Çarşamba</option>
-      <option value="4">Perşembe</option><option value="5">Cuma</option>
-      <option value="6">Cumartesi</option>
-    </select>
-    <button onclick="saveSettings()">Ayarları kaydet</button>
-    <p id="settingsMsg" role="status"></p>
-    <p class="small">Kayıtlar bu tarayıcıda tutulur. Tarayıcı verilerini silersen kayıtlar kaybolabilir.</p>
-  </div>
+<section id="settings" class="page">
+<h1>⚙️ Ayarlar</h1>
+<div class="card">
+<label class="field">Günlük ezber hedefi (sayfa)<input id="target" type="number" min="0.5" step="0.5"></label>
+<label class="field">Dinlenme günü<select id="rest">
+<option value="0">Pazar</option><option value="1">Pazartesi</option><option value="2">Salı</option><option value="3">Çarşamba</option><option value="4">Perşembe</option><option value="5">Cuma</option><option value="6">Cumartesi</option><option value="none">Dinlenme günü yok</option>
+</select></label>
+<button class="btn" id="saveSettings">Ayarları kaydet</button>
+</div>
+<div class="card">
+<h2>Verilerim</h2><p class="muted">Kayıtlar bu tarayıcıda saklanır. Tarayıcı verilerini silmek kayıtları silebilir.</p>
+<button class="btn light" id="backup">Yedek indir</button>
+<button class="btn red" id="wipe">Bütün kayıtları sil</button>
+</div>
 </section>
 </main>
-
-<div id="drawer" class="drawer hidden" onclick="if(event.target===this)menu(false)">
-  <nav class="drawerPanel" aria-label="Ana menü">
-    <button class="close" onclick="menu(false)" aria-label="Kapat">✕</button>
-    <h2>Menü</h2>
-    <button onclick="show('home')">📖 Kur’an-ı Kerim</button>
-    <button onclick="show('field')">🌳 Tarlam ve Ağaçlar</button>
-    <button onclick="show('memorize')">✍️ Ezber Kaydı</button>
-    <button onclick="show('repeat')">🔁 Tekrar Programı</button>
-    <button onclick="show('progress')">📊 İlerlemem</button>
-    <button onclick="show('meal')">📚 Meal ve Notlarım</button>
-    <button onclick="show('settings')">⚙️ Ayarlar</button>
-  </nav>
 </div>
-<footer>بِسْمِ اللَّهِ · Hafızlık Bahçem 🌸</footer>
 
 <script>
-'use strict';
-const $ = id => document.getElementById(id);
-const ids = ['home','field','memorize','repeat','progress','meal','settings'];
-
-function dateString(d=new Date()){
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+(()=>{
+"use strict";
+const $=id=>document.getElementById(id);
+const KEY="hafizlikBahcemV1";
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const fresh=()=>({memories:[],repeats:[],notes:[],trees:[],target:1,restDay:"0",focusMinutes:0});
+let d;
+try{d=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){d=null}
+if(!d||typeof d!=="object")d=fresh();
+["memories","repeats","notes","trees"].forEach(k=>{if(!Array.isArray(d[k]))d[k]=[]});
+if(!Number(d.target))d.target=1;
+if(d.restDay===undefined)d.restDay="0";
+if(!Number(d.focusMinutes))d.focusMinutes=0;
+let running=false,paused=false,remaining=1500,totalSeconds=1500,interval=null;
+function save(){localStorage.setItem(KEY,JSON.stringify(d))}
+function esc(x){return String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function num(x){return Number(x)||0}
+function page(id){
+ document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===id));
+ document.querySelectorAll("nav button[data-page]").forEach(x=>x.classList.toggle("active",x.dataset.page===id));
+ $("nav").classList.remove("open");
+ if(id==="quran"&&!$("surah").dataset.loaded)loadSurahs();
+ render();window.scrollTo({top:0,behavior:"smooth"});
 }
-const today = dateString();
+document.querySelectorAll("nav button[data-page]").forEach(b=>b.onclick=()=>page(b.dataset.page));
+document.querySelectorAll("[data-goto]").forEach(b=>b.onclick=()=>page(b.dataset.goto));
+$("menuBtn").onclick=()=>$("nav").classList.toggle("open");
+$("homeBtn").onclick=()=>page("quran");
+$("mdate").value=today();$("rdate").value=today();
+$("target").value=d.target;$("rest").value=String(d.restDay);
 
-let data;
-try { data=JSON.parse(localStorage.getItem('hafizlikBahcemV1'))||{}; }
-catch(e){ data={}; }
-if(!data.entries || typeof data.entries!=='object' || Array.isArray(data.entries)) data.entries={};
-if(!Array.isArray(data.repeats)) data.repeats=[];
-if(!Array.isArray(data.meals)) data.meals=[];
-data.goal=Math.max(1,Math.floor(Number(data.goal)||5));
-if(data.restDay===undefined)data.restDay='0';
-data.restDay=String(data.restDay);
-
-$('date').value=today;
-$('repeatDate').value=today;
-$('goal').value=data.goal;
-$('restDay').value=data.restDay;
-
-function save(){
-  try { localStorage.setItem('hafizlikBahcemV1',JSON.stringify(data)); return true; }
-  catch(e){ alert('Kayıt yapılamadı. Tarayıcı depolama ayarlarını kontrol et.'); return false; }
-}
-function menu(open){ $('drawer').classList.toggle('hidden',!open); }
-function show(id){
-  if(!ids.includes(id))return;
-  ids.forEach(x=>$(x).classList.toggle('hidden',x!==id));
-  menu(false);
-  render();
-  if(id==='home' && !$('quranText').dataset.loaded) loadSurah();
-  window.scrollTo(0,0);
-}
-function esc(s){
-  return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-async function loadSurah(){
-  const select=$('surahSelect');
-  const number=Number(select.value||1);
-  $('quranStatus').textContent='Sure yükleniyor...';
-  $('quranText').innerHTML='<p class="note">Kur’an metni getiriliyor. Lütfen bekle.</p>';
-  try{
-    const [arabicResponse,mealResponse]=await Promise.all([
-      fetch('https://api.alquran.cloud/v1/surah/'+number+'/quran-uthmani'),
-      fetch('https://api.alquran.cloud/v1/surah/'+number+'/tr.diyanet')
-    ]);
-    if(!arabicResponse.ok || !mealResponse.ok) throw new Error('Metin yüklenemedi');
-    const arabic=await arabicResponse.json();
-    const meal=await mealResponse.json();
-    if(arabic.code!==200 || meal.code!==200) throw new Error('Sure verisi alınamadı');
-    const arabicAyahs=arabic.data.ayahs;
-    const mealAyahs=meal.data.ayahs;
-    $('quranText').innerHTML=arabicAyahs.map((a,i)=>
-      '<div class="ayah"><div class="ayahNo">'+esc(arabic.data.name)+' · Ayet '+esc(a.numberInSurah)+'</div>'+
-      '<div class="arabic" lang="ar" dir="rtl">'+esc(a.text)+' ﴿'+esc(a.numberInSurah)+'﴾</div>'+
-      '<div class="translation">'+esc(mealAyahs[i]?.text||'Türkçe meal bulunamadı.')+'</div></div>'
-    ).join('');
-    $('quranText').dataset.loaded='yes';
-    $('quranStatus').textContent=arabic.data.englishName+' · '+arabicAyahs.length+' ayet';
-  }catch(e){
-    $('quranStatus').textContent='Sure yüklenemedi. İnternet bağlantını kontrol edip tekrar dene.';
-    $('quranText').innerHTML='<p class="note">Kur’an metni internet üzerinden yüklenemedi. Yeniden denemek için “Sureyi getir” düğmesine bas.</p>';
-    delete $('quranText').dataset.loaded;
-  }
-}
-
-async function initSurahs(){
-  try{
-    const res=await fetch('https://api.alquran.cloud/v1/surah');
-    if(!res.ok)throw new Error();
-    const json=await res.json();
-    $('surahSelect').innerHTML=json.data.map(s=>
-      '<option value="'+s.number+'">'+s.number+'. '+esc(s.name)+' — '+esc(s.englishName)+'</option>'
-    ).join('');
-    $('surahSelect').value='1';
-    loadSurah();
-  }catch(e){
-    $('surahSelect').innerHTML='<option value="1">Fatiha</option>';
-    $('quranStatus').textContent='Sure listesi yüklenemedi. İnternet bağlantını kontrol et.';
-  }
-}
-$('surahSelect').addEventListener('change',loadSurah);
-$('editionSelect').addEventListener('change',loadSurah);
-
-$('entryForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const d=$('date').value;
-  if(!d)return;
-  data.entries[d]={
-    pages:Math.max(0,Math.floor(Number($('pages').value)||0)),
-    juz:Math.max(0,Number($('juz').value)||0)
-  };
-  save();
-  $('entryMsg').textContent='Ezberin kaydedildi. Allah kabul etsin! 💙';
-  render();
-});
-$('date').addEventListener('change',()=>{
-  const entry=data.entries[$('date').value]||{pages:0,juz:0};
-  $('pages').value=entry.pages;
-  $('juz').value=entry.juz;
-});
-$('repeatForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  data.repeats.push({
-    date:$('repeatDate').value,
-    pages:$('repeatPages').value.trim(),
-    count:Math.max(1,Math.floor(Number($('repeatCount').value)||1)),
-    note:$('repeatNote').value.trim()
-  });
-  save();$('repeatForm').reset();
-  $('repeatDate').value=today;$('repeatCount').value=1;render();
-});
-$('mealForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  data.meals.push({
-    surah:$('surah').value.trim(),type:$('mealType').value,
-    text:$('mealText').value.trim(),share:$('shareMeal').checked
-  });
-  save();$('mealForm').reset();render();
-});
-
-function saveSettings(){
-  data.goal=Math.max(1,Math.floor(Number($('goal').value)||5));
-  data.restDay=$('restDay').value;
-  save();
-  $('settingsMsg').textContent='Ayarların kaydedildi. 🌸';
-  render();
-}
-
-function treeState(){
-  const goal=data.goal;
-  const completed=Object.entries(data.entries).filter(([,v])=>Number(v.pages)>=goal).length;
-  const now=new Date();
-  let previousMiss=false;
-  let check=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  for(let i=0;i<7;i++){
-    check.setDate(check.getDate()-1);
-    if(check.getDay()===Number(data.restDay))continue;
-    const entry=data.entries[dateString(check)];
-    previousMiss=!entry || Number(entry.pages)<goal;
-    break;
-  }
-  const todayDone=Number((data.entries[today]||{}).pages)>=goal;
-  return {completed,todayDone,wilted:previousMiss&&!todayDone};
-}
-function renderTrees(){
-  const s=treeState();
-  const count=Math.min(20,Math.max(1,Math.floor(s.completed/5)+1));
-  const icons=[];
-  for(let i=0;i<count;i++){
-    if(s.wilted)icons.push('🍂');
-    else if(i<Math.floor(s.completed/5))icons.push('🌳');
-    else if(s.completed>=2)icons.push('🌿');
-    else icons.push('🌱');
-  }
-  $('myTrees').textContent=icons.join(' ');
-  $('treeStatus').textContent=s.wilted?'Ağacın dinleniyor; yeniden canlanabilir. 💙':s.completed>=5?'Maşallah, ağaçların büyüyor! 🌳':'Fidanın büyümeye hazır. 🌱';
-  $('treeMessage').textContent=s.wilted?'Hedefini yeniden tamamladığında ağacın yeşerecek.':s.todayDone?'Bugünkü hedefini tamamladın. Allah kabul etsin!':'Her sayfa, hafızlık yolunda güzel bir adım.';
-  $('treeDays').textContent='Tamamlanan hedef günü: '+s.completed;
-  const pages=Number((data.entries[today]||{}).pages)||0;
-  $('fieldBar').style.width=Math.min(100,Math.round(pages/data.goal*100))+'%';
-  $('fieldGoal').textContent='Bugünkü ezber: '+pages+' / '+data.goal+' sayfa';
+function totals(){return d.memories.reduce((s,x)=>s+num(x.pages),0)}
+function reps(){return d.repeats.reduce((s,x)=>s+num(x.pages),0)}
+function table(items,type){
+ if(!items.length)return '<p class="muted">Henüz kayıt yok.</p>';
+ return '<div style="overflow-x:auto"><table><tr><th>Tarih</th><th>Sayfa</th><th>Detay</th><th></th></tr>'+
+ items.map((x,i)=>({x,i})).reverse().map(o=>'<tr><td>'+esc(o.x.date)+'</td><td>'+num(o.x.pages)+'</td><td>'+esc(o.x.detail||o.x.note||"—")+'</td><td><button class="btn light" data-del="'+type+'" data-i="'+o.i+'">Sil</button></td></tr>').join("")+'</table></div>';
 }
 function render(){
-  const entries=Object.entries(data.entries).sort((a,b)=>b[0].localeCompare(a[0]));
-  const pages=entries.reduce((n,[,v])=>n+(Number(v.pages)||0),0);
-  const juz=entries.reduce((n,[,v])=>n+(Number(v.juz)||0),0);
-  const todayPages=Number((data.entries[today]||{}).pages)||0;
-  const pct=Math.min(100,Math.round(todayPages/data.goal*100));
-  $('totalPages').textContent='Toplam ezber: '+pages+' sayfa';
-  $('totalJuz').textContent='Toplam cüz: '+juz;
-  $('goalText').textContent='Günlük hedef: '+data.goal+' sayfa';
-  $('todayProgress').textContent='Bugünkü hedef: %'+pct;
-  $('progressBar').style.width=pct+'%';
-  $('history').innerHTML=entries.length?entries.map(([d,v])=>
-    '<div class="item"><strong>'+esc(d)+'</strong> — '+esc(v.pages)+' sayfa, '+esc(v.juz)+' cüz</div>'
-  ).join(''):'Henüz ezber kaydı yok.';
-  $('repeatList').innerHTML=data.repeats.length?data.repeats.slice().reverse().map(r=>
-    '<div class="item"><strong>'+esc(r.date)+' — '+esc(r.pages)+'</strong><br>'+esc(r.count)+' tekrar'+(r.note?'<br>'+esc(r.note):'')+'</div>'
-  ).join(''):'Henüz tekrar kaydı yok.';
-  $('mealList').innerHTML=data.meals.length?data.meals.slice().reverse().map(m=>
-    '<div class="item"><strong>'+esc(m.surah)+' · '+esc(m.type)+'</strong><p>'+esc(m.text)+'</p><span class="small">'+(m.share?'Paylaşım için işaretlendi':'Kişisel kayıt')+'</span></div>'
-  ).join(''):'Henüz meal notu yok.';
-  renderTrees();
+ $("forestCount").textContent=d.trees.length;
+ $("focusCount").textContent=d.trees.length;
+ $("focusMinutes").textContent=d.focusMinutes;
+ $("totalPages").textContent=totals();
+ $("totalRepeats").textContent=reps();
+ $("totalDays").textContent=new Set(d.memories.map(x=>x.date)).size;
+ $("targetText").textContent="Günlük ezber hedefin: "+d.target+" sayfa. Tamamladığın oturumlar ormanına eklenir.";
+ $("mhist").innerHTML=table(d.memories,"memories");
+ $("rhist").innerHTML=table(d.repeats,"repeats");
+ $("phist").innerHTML=table(d.memories,"memories");
+ $("nhist").innerHTML=d.notes.length?d.notes.map((n,i)=>'<div class="card"><b>'+esc(n.type)+' · '+esc(n.ref)+'</b><p>'+esc(n.text)+'</p><small class="muted">'+esc(n.date)+' · '+(n.share?"Paylaşım tercihi işaretli":"Özel not")+'</small><p><button class="btn light" data-del="notes" data-i="'+i+'">Sil</button></p></div>').reverse().join(""):'<p class="muted">Henüz not yok.</p>';
+ $("forest").innerHTML=d.trees.length?d.trees.map((t,i)=>'<div class="forest-tree"><div class="treeemoji">'+(t.minutes>=45?"🌳":t.minutes>=25?"🌲":"🌱")+'</div><b>Ağacım '+(i+1)+'</b><small>'+esc(t.date)+'</small><small>'+t.minutes+' dk · '+esc(t.type)+'</small></div>').join(""):'<div class="notice">Ormanın henüz boş. İlk fidanını dikmek için bir odaklanma oturumu başlat! 🌱</div>';
+ drawTree();
 }
-render();
-initSurahs();
+function drawTree(){
+ const ratio=totalSeconds?Math.max(0,Math.min(1,1-remaining/totalSeconds)):0;
+ const leaf=$("leaves");
+ const circles=[[76,35,20],[57,55,18],[96,55,18],[76,69,21],[43,74,13],[108,74,13],[63,32,13],[90,31,13]];
+ leaf.innerHTML=circles.map((p,i)=>{
+ const scale=Math.max(.01,ratio);
+ return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(p[2]*scale)+'" fill="'+(i%2?"#398955":"#65b86c")+'"/>';
+ }).join("");
+ $("growLabel").textContent=running?(paused?"Fidanın dinleniyor…":"Fidanın büyüyor… "+Math.round(ratio*100)+"%"):"Yeni fidanın seni bekliyor 🌱";
+ $("treeDrawing").style.transform="scale("+Math.max(.1,ratio)+")";
+}
+function timerText(){const m=Math.floor(remaining/60),s=remaining%60;$("timer").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");drawTree()}
+function resetTimer(){clearInterval(interval);interval=null;running=false;paused=false;remaining=Number($("duration").value)*60;totalSeconds=remaining;timerText();$("start").disabled=false;$("pause").disabled=true;$("cancel").disabled=true;$("pause").textContent="⏸ Duraklat"}
+$("duration").onchange=()=>{if(!running){remaining=Number($("duration").value)*60;totalSeconds=remaining;timerText()}};
+$("start").onclick=()=>{
+ if(running)return;
+ if(!paused){remaining=Number($("duration").value)*60;totalSeconds=remaining}
+ running=true;paused=false;
+ $("start").disabled=true;$("pause").disabled=false;$("cancel").disabled=false;
+ $("focusStatus").textContent="Odaklanma başladı. Dikkatini ezberine ver; fidanın büyüyor. 🌱";
+ interval=setInterval(()=>{
+ if(paused)return;
+ remaining--;timerText();
+ if(remaining<=0)finishFocus();
+ },1000);
+};
+$("pause").onclick=()=>{
+ if(!running)return;
+ paused=!paused;
+ $("pause").textContent=paused?"▶ Devam et":"⏸ Duraklat";
+ $("focusStatus").textContent=paused?"Oturum duraklatıldı. Hazır olduğunda devam et.":"Oturum devam ediyor. 🌿";
+ drawTree();
+};
+$("cancel").onclick=()=>{
+ if(!confirm("Bu odaklanma oturumunu iptal etmek istiyor musun? Ağacın ormana eklenmeyecek."))return;
+ $("focusStatus").textContent="Oturum iptal edildi. Dilediğinde yeniden başlayabilirsin.";
+ resetTimer();
+};
+function finishFocus(){
+ clearInterval(interval);interval=null;running=false;paused=false;
+ const minutes=Number($("duration").value),type=$("focusType").value;
+ d.trees.push({date:today(),minutes,type});
+ d.focusMinutes+=minutes;save();render();
+ $("focusStatus").textContent="🌳 Harika! Oturum tamamlandı ve ağacın ormanına eklendi.";
+ $("start").disabled=false;$("pause").disabled=true;$("cancel").disabled=true;
+ remaining=Number($("duration").value)*60;totalSeconds=remaining;timerText();
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-del]");if(!b)return;
+ if(!confirm("Bu kaydı silmek istiyor musun?"))return;
+ const list=d[b.dataset.del];if(Array.isArray(list))list.splice(Number(b.dataset.i),1);
+ save();render();
+});
+$("saveM").onclick=()=>{
+ const pages=num($("mpages").value);
+ if(pages<=0)return alert("Ezber sayfasını gir.");
+ d.memories.push({date:$("mdate").value||today(),pages,juz:$("mjuz").value,detail:$("mdetail").value,note:$("mnote").value});
+ save();render();$("mdetail").value="";$("mnote").value="";alert("Ezber kaydedildi. 🌸");
+};
+$("saveR").onclick=()=>{
+ const pages=num($("rpages").value);
+ if(pages<=0)return alert("Tekrar sayfasını gir.");
+ d.repeats.push({date:$("rdate").value||today(),pages,detail:$("rdetail").value,note:$("rnote").value});
+ save();render();$("rdetail").value="";$("rnote").value="";alert("Tekrar kaydedildi.");
+};
+$("saveN").onclick=()=>{
+ const text=$("ntext").value.trim();if(!text)return alert("Lütfen meal veya not yaz.");
+ d.notes.push({date:today(),type:$("ntype").value,ref:$("nref").value,text,share:$("nshare").checked});
+ save();render();$("ntext").value="";$("nref").value="";$("nshare").checked=false;alert("Not kaydedildi.");
+};
+$("saveSettings").onclick=()=>{
+ const target=num($("target").value);if(target<=0)return alert("Hedef sıfırdan büyük olmalı.");
+ d.target=target;d.restDay=$("rest").value;save();render();alert("Ayarlar kaydedildi.");
+};
+$("backup").onclick=()=>{
+ const blob=new Blob([JSON.stringify(d,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download="hafizlik-bahcem-yedek.json";a.click();URL.revokeObjectURL(url);
+};
+$("wipe").onclick=()=>{
+ if(!confirm("Bütün kayıtların silinecek. Emin misin?"))return;
+ d=fresh();save();$("target").value=d.target;$("rest").value=d.restDay;render();
+};
+async function loadSurahs(){
+ if($("surah").dataset.loaded==="1")return;
+ try{
+  $("qstatus").textContent="Sureler yükleniyor…";
+  const r=await fetch("https://api.alquran.cloud/v1/surah");if(!r.ok)throw Error();
+  const j=await r.json();if(j.code!==200)throw Error();
+  $("surah").innerHTML=j.data.map(s=>'<option value="'+s.number+'">'+s.number+'. '+esc(s.name)+'</option>').join("");
+  $("surah").dataset.loaded="1";await loadQuran();
+ }catch(e){$("qstatus").textContent="Sure listesi yüklenemedi. İnternet bağlantını kontrol et ve yeniden dene."}
+}
+async function loadQuran(){
+ $("qstatus").textContent="Ayetler yükleniyor…";$("qtext").innerHTML="";
+ try{
+  const id=$("surah").value||"1";
+  const results=await Promise.all([
+   fetch("https://api.alquran.cloud/v1/surah/"+id+"/quran-uthmani"),
+   fetch("https://api.alquran.cloud/v1/surah/"+id+"/tr.diyanet")
+  ]);
+  if(results.some(r=>!r.ok))throw Error();
+  const [a,t]=await Promise.all(results.map(r=>r.json()));
+  if(a.code!==200||t.code!==200)throw Error();
+  $("qstatus").textContent=a.data.name+" · "+a.data.ayahs.length+" ayet";
+  $("qtext").innerHTML=a.data.ayahs.map((v,i)=>'<div class="ayah"><div class="quran">'+esc(v.text)+' <small>﴿'+v.numberInSurah+'﴾</small></div><p>'+esc(t.data.ayahs[i]?.text||"")+'</p></div>').join("");
+ }catch(e){$("qstatus").textContent="Kur’an veya meal yüklenemedi. İnternet bağlantını kontrol edip yeniden dene."}
+}
+$("loadQuran").onclick=loadQuran;
+$("surah").onchange=loadQuran;
+render();timerText();loadSurahs();
+})();
 </script>
 </body>
 </html>
