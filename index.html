@@ -4,39 +4,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#dceefa">
 <title>Hafızlık Bahçem</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#edf6fc;color:#284e68;font-family:Arial,sans-serif}
-header{display:flex;align-items:center;justify-content:space-between;padding:16px;background:#dceefa;position:sticky;top:0;z-index:5}
+header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;background:#dceefa;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #284e6810}
 .brand{font-size:20px;font-weight:bold}
 button{cursor:pointer;border:0;border-radius:14px;padding:12px 15px;background:#397eaa;color:white;font-size:15px}
-.menuBtn{font-size:25px;padding:6px 12px;background:transparent;color:#285b7b}
-main{max-width:650px;margin:auto;padding:16px}
-.card{background:white;border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 4px 16px #9bbbd022}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #80b9df;outline-offset:2px}
+.menuBtn{font-size:27px;padding:5px 11px;background:transparent;color:#285b7b}
+main{max-width:680px;margin:auto;padding:14px}
+.card{background:white;border-radius:22px;padding:19px;margin:14px 0;box-shadow:0 4px 16px #9bbbd022}
 h1,h2{color:#2d668a}
-h1{font-size:27px}
-.treebox{text-align:center;border-radius:24px;padding:20px 10px;background:linear-gradient(#dff1ff,#e5f3e4)}
-.tree{font-size:100px;line-height:1.4}
-.subtitle{line-height:1.7}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tile{background:#f0f7fc;color:#2d668a;padding:17px 10px;border-radius:17px;text-align:left;min-height:95px}
-.tile strong{display:block;font-size:17px;margin-bottom:6px}
-.tile span{font-size:13px}
+h1{font-size:26px}
+h2{font-size:20px}
+.homeCard{text-align:center;padding:35px 20px;background:linear-gradient(160deg,#eaf6ff,#d6e9f7,#f4faff)}
+.basmala{font-size:24px;line-height:2;color:#2d668a}
+.subtitle{line-height:1.9}
+.treebox{text-align:center;border-radius:24px;padding:22px 12px;background:linear-gradient(#dff1ff,#e5f3e4)}
+.trees{font-size:65px;line-height:1.8;overflow-wrap:anywhere}
+.progress{height:12px;background:#e3edf3;border-radius:20px;overflow:hidden}
+.bar{height:100%;width:0;background:#5c9e80;transition:width .3s}
 label{display:block;margin:13px 0 6px;font-weight:bold}
 input,select,textarea{width:100%;padding:12px;border:1px solid #c5dce9;border-radius:12px;background:white;font-size:16px;color:#284e68}
-textarea{min-height:90px}
+input[type=checkbox]{width:auto;vertical-align:middle}
+textarea{min-height:90px;resize:vertical}
 form button{margin-top:14px}
-.progress{height:12px;background:#e3edf3;border-radius:20px;overflow:hidden}
-#bar{height:100%;width:0;background:#5c9e80}
 .hidden{display:none!important}
-.drawer{position:fixed;inset:0;background:#16364a66;z-index:10}
-.drawerPanel{margin-left:auto;width:min(85%,340px);height:100%;background:#f5faff;padding:22px;overflow:auto}
+.drawer{position:fixed;inset:0;background:#16364a77;z-index:10}
+.drawerPanel{margin-left:auto;width:min(88%,350px);height:100%;background:#f5faff;padding:22px;overflow:auto}
 .drawerPanel button{width:100%;text-align:left;margin:5px 0;background:white;color:#285b7b}
-.close{float:right!important;width:auto!important;background:transparent!important;font-size:24px}
-.item{padding:12px 0;border-bottom:1px solid #e3edf3;overflow-wrap:anywhere}
-.small{font-size:13px;color:#648095}
-footer{text-align:center;padding:24px;color:#648095}
+.drawerPanel .close{width:auto;float:right;background:transparent;font-size:24px;padding:5px}
+.item{padding:13px 0;border-bottom:1px solid #e3edf3;overflow-wrap:anywhere;line-height:1.6}
+.small{font-size:13px;color:#648095;line-height:1.6}
+.note{padding:13px;border-radius:14px;background:#f0f7fc;line-height:1.7}
+.rowBtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.rowBtns button{font-size:13px;padding:9px 11px}
+.danger{background:#a95757}
+footer{text-align:center;padding:24px;color:#648095;font-size:13px}
+@media(min-width:520px){main{padding:22px}}
 </style>
 </head>
 <body>
@@ -46,183 +53,391 @@ footer{text-align:center;padding:24px;color:#648095}
 </header>
 
 <main>
-<section id="home">
-  <div class="treebox card">
-    <div style="font-size:14px">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-    <div class="tree">🌳</div>
-    <h1>Benim Hafızlık Ağacım</h1>
-    <p class="subtitle">Her ezber bir yaprak, her tekrar ağacına güç katar. 💙</p>
-    <div class="progress"><div id="bar"></div></div>
-    <p id="progressText">Bahçendeki yolculuğun başlıyor.</p>
-  </div>
-  <div class="grid">
-    <button class="tile" onclick="show('memorize')">📖<strong>Ezber</strong><span>Yeni ezberini kaydet</span></button>
-    <button class="tile" onclick="show('repeat')">🔁<strong>Tekrar</strong><span>Tekrarlarını takip et</span></button>
-    <button class="tile" onclick="show('progress')">🌿<strong>İlerlemem</strong><span>Sayfalarını ve cüzlerini gör</span></button>
-    <button class="tile" onclick="show('meal')">📚<strong>Kur’an ve Meal</strong><span>Meal notlarını ekle</span></button>
-  </div>
-  <div class="card">
-    <h2>🌷 Bugünün niyeti</h2>
-    <p>Az da olsa devamlı yapılan güzel ameller çok kıymetlidir.</p>
-    <p class="small">Bugün kendin için küçük bir adım at.</p>
-  </div>
-</section>
+  <section id="home">
+    <div class="card homeCard">
+      <p class="basmala">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <h1>Hoş Geldin 🌸</h1>
+      <p class="subtitle">Hafızlık yolculuğunda her gün yeni bir başlangıçtır.</p>
+      <p class="subtitle"><em>“Az da olsa devamlı olan emek, seni hedefine yaklaştırır.”</em> 💙</p>
+      <p class="small">Bugün Kur’an ile geçireceğin güzel bir gün olsun.</p>
+    </div>
+  </section>
 
-<section id="memorize" class="hidden">
-  <div class="card">
-    <h1>📖 Ezber kaydı</h1>
-    <form id="entryForm">
-      <label for="date">Tarih</label><input id="date" type="date" required>
-      <label for="pages">Ezberlenen sayfa</label><input id="pages" type="number" min="0" value="0">
-      <label for="juz">Ezberlenen cüz</label><input id="juz" type="number" min="0" step="0.1" value="0">
-      <button type="submit">Ezberimi kaydet 💙</button>
-    </form>
-    <p id="entryMsg"></p>
-  </div>
-</section>
+  <section id="field" class="hidden">
+    <div class="card treebox">
+      <h1>🌱 Tarlam ve Ağaçlar</h1>
+      <p>Her tamamlanan günlük hedef, ağacına güç verir.</p>
+      <div id="myTrees" class="trees">🌱</div>
+      <h2 id="treeStatus">Yeni bir fidanla başlıyorsun.</h2>
+      <p id="treeMessage" class="subtitle">Küçük adımlarınla ağacını büyüt. 💙</p>
+      <p id="treeDays">Tamamlanan hedef günü: 0</p>
+      <div class="progress"><div id="fieldBar" class="bar"></div></div>
+      <p id="fieldGoal" class="small"></p>
+    </div>
+    <div class="card">
+      <h2>🌿 Tarlanın durumu</h2>
+      <p class="note">Hedeflerini tamamladıkça ağacın gelişir. Bir gün aksarsa yeniden başlayabilirsin; ağacını tekrar canlandırmak her zaman mümkün.</p>
+      <button onclick="show('memorize')">📖 Ezber kaydı ekle</button>
+    </div>
+  </section>
 
-<section id="repeat" class="hidden">
-  <div class="card">
-    <h1>🔁 Tekrar bahçesi</h1>
-    <form id="repeatForm">
-      <label for="repeatDate">Tekrar tarihi</label><input id="repeatDate" type="date" required>
-      <label for="repeatPages">Tekrar edilen sayfa aralığı veya adı</label><input id="repeatPages" placeholder="Örn. Bakara 1–10 veya 25. sayfa" required>
-      <label for="repeatCount">Tekrar sayısı</label><input id="repeatCount" type="number" min="1" value="1" required>
-      <label for="repeatNote">Not</label><textarea id="repeatNote" placeholder="Zorlandığın yerler, hatırlatmalar..."></textarea>
-      <button type="submit">Tekrarı kaydet</button>
-    </form>
-    <h2>Tekrar geçmişim</h2><div id="repeatList"></div>
-  </div>
-</section>
+  <section id="memorize" class="hidden">
+    <div class="card">
+      <h1>📖 Ezber Kaydı</h1>
+      <form id="entryForm">
+        <label for="date">Tarih</label>
+        <input id="date" type="date" required>
+        <label for="pages">Ezberlenen sayfa</label>
+        <input id="pages" type="number" min="0" step="1" value="0" required>
+        <label for="juz">Ezberlenen cüz</label>
+        <input id="juz" type="number" min="0" step="0.1" value="0" required>
+        <button type="submit">Ezberimi kaydet 💙</button>
+      </form>
+      <p id="entryMsg" role="status"></p>
+      <p class="small">Aynı tarihteki kaydı tekrar kaydedersen o tarihin önceki kaydı güncellenir.</p>
+    </div>
+  </section>
 
-<section id="progress" class="hidden">
-  <div class="card">
-    <h1>🌿 İlerlemem</h1>
-    <p id="totalPages">Toplam ezber: 0 sayfa</p>
-    <p id="totalJuz">Toplam cüz: 0</p>
-    <p id="goalText">Günlük hedef: 5 sayfa</p>
-    <div class="progress"><div id="progressBar" style="width:0"></div></div>
-    <h2>Ezber geçmişim</h2><div id="history"></div>
-  </div>
-</section>
+  <section id="repeat" class="hidden">
+    <div class="card">
+      <h1>🔁 Tekrar Programı</h1>
+      <form id="repeatForm">
+        <label for="repeatDate">Tekrar tarihi</label>
+        <input id="repeatDate" type="date" required>
+        <label for="repeatPages">Tekrar edilen sayfa aralığı veya adı</label>
+        <input id="repeatPages" placeholder="Örn. Bakara 1–10 veya 25. sayfa" required>
+        <label for="repeatCount">Tekrar sayısı</label>
+        <input id="repeatCount" type="number" min="1" step="1" value="1" required>
+        <label for="repeatNote">Not</label>
+        <textarea id="repeatNote" placeholder="Zorlandığın yerler, hatırlatmalar..."></textarea>
+        <button type="submit">Tekrarı kaydet</button>
+      </form>
+      <h2>Tekrar Geçmişim</h2>
+      <div id="repeatList"></div>
+    </div>
+  </section>
 
-<section id="meal" class="hidden">
-  <div class="card">
-    <h1>📚 Kur’an ve Meal</h1>
-    <p class="small">Kendi meal notlarını ekleyebilir, tam meal veya kırık meal biçiminde kaydedebilirsin. Buraya yazdığın içerik kendiliğinden doğrulanmış Kur’an meali değildir.</p>
-    <form id="mealForm">
-      <label for="surah">Sure adı ve ayet</label><input id="surah" placeholder="Örn. Fatiha 1" required>
-      <label for="mealType">Gösterim biçimi</label>
-      <select id="mealType"><option value="Tam meal">Tam meal</option><option value="Kırık meal">Kırık meal</option></select>
-      <label for="mealText">Meal veya kişisel notun</label><textarea id="mealText" required></textarea>
-      <label><input id="shareMeal" type="checkbox" style="width:auto"> Toplulukta paylaşmak üzere işaretle</label>
-      <button type="submit">Meal notunu kaydet</button>
-    </form>
-    <p class="small">Paylaşım seçeneği şimdilik yalnızca tercihini kaydeder; herkese açık paylaşım özelliği henüz bağlı değil.</p>
-    <h2>Kaydettiğim mealler</h2><div id="mealList"></div>
-  </div>
-</section>
+  <section id="progress" class="hidden">
+    <div class="card">
+      <h1>📊 İlerlemem</h1>
+      <p id="totalPages">Toplam ezber: 0 sayfa</p>
+      <p id="totalJuz">Toplam cüz: 0</p>
+      <p id="goalText">Günlük hedef: 5 sayfa</p>
+      <p id="todayProgress">Bugünkü hedef: 0%</p>
+      <div class="progress"><div id="progressBar" class="bar"></div></div>
+      <h2>Ezber Geçmişim</h2>
+      <div id="history"></div>
+    </div>
+  </section>
 
-<section id="settings" class="hidden">
-  <div class="card">
-    <h1>⚙️ Ayarlar</h1>
-    <label for="goal">Günlük ezber hedefi (sayfa)</label><input id="goal" type="number" min="1" value="5">
-    <label for="restDay">Dinlenme günü</label>
-    <select id="restDay">
-      <option value="0">Pazar</option><option value="1">Pazartesi</option><option value="2">Salı</option><option value="3">Çarşamba</option><option value="4">Perşembe</option><option value="5">Cuma</option><option value="6">Cumartesi</option>
-    </select>
-    <button onclick="saveSettings()">Ayarları kaydet</button>
-    <p id="settingsMsg"></p>
-  </div>
-</section>
+  <section id="meal" class="hidden">
+    <div class="card">
+      <h1>📚 Kur’an ve Meal</h1>
+      <p class="small">Meal metinlerini veya kişisel notlarını kaydedebilirsin. Girdiğin içerik otomatik olarak doğrulanmış bir Kur’an meali sayılmaz.</p>
+      <form id="mealForm">
+        <label for="surah">Sure adı ve ayet</label>
+        <input id="surah" placeholder="Örn. Fatiha 1" required>
+        <label for="mealType">Gösterim biçimi</label>
+        <select id="mealType">
+          <option value="Tam meal">Tam meal</option>
+          <option value="Kırık meal">Kırık meal</option>
+        </select>
+        <label for="mealText">Meal veya kişisel notun</label>
+        <textarea id="mealText" required></textarea>
+        <label><input id="shareMeal" type="checkbox"> Toplulukta paylaşmak üzere işaretle</label>
+        <button type="submit">Meal notunu kaydet</button>
+      </form>
+      <p class="small">Paylaşım işareti yalnızca tercihini kaydeder. Gerçek topluluk paylaşımı bu sürümde etkin değildir.</p>
+      <h2>Kaydettiğim Mealler</h2>
+      <div id="mealList"></div>
+    </div>
+  </section>
+
+  <section id="settings" class="hidden">
+    <div class="card">
+      <h1>⚙️ Ayarlar</h1>
+      <label for="goal">Günlük ezber hedefi (sayfa)</label>
+      <input id="goal" type="number" min="1" step="1" value="5">
+      <label for="restDay">Dinlenme günü</label>
+      <select id="restDay">
+        <option value="0">Pazar</option>
+        <option value="1">Pazartesi</option>
+        <option value="2">Salı</option>
+        <option value="3">Çarşamba</option>
+        <option value="4">Perşembe</option>
+        <option value="5">Cuma</option>
+        <option value="6">Cumartesi</option>
+      </select>
+      <button onclick="saveSettings()">Ayarları kaydet</button>
+      <p id="settingsMsg" role="status"></p>
+      <p class="small">Kayıtlar bu tarayıcıda saklanır. Tarayıcı verilerini silersen kayıtlar da silinebilir.</p>
+    </div>
+  </section>
 </main>
 
 <div id="drawer" class="drawer hidden" onclick="if(event.target===this)menu(false)">
-  <div class="drawerPanel">
-    <button class="close" onclick="menu(false)">✕</button>
-    <h2>🌸 Bahçem</h2>
-    <button onclick="show('home')">🏡 Ana sayfa</button>
-    <button onclick="show('memorize')">📖 Ezber kaydı</button>
-    <button onclick="show('repeat')">🔁 Tekrar programı</button>
-    <button onclick="show('progress')">🌿 İlerlemem</button>
-    <button onclick="show('meal')">📚 Kur’an ve meal</button>
+  <nav class="drawerPanel" aria-label="Ana menü">
+    <button class="close" onclick="menu(false)" aria-label="Menüyü kapat">✕</button>
+    <h2>Menü</h2>
+    <button onclick="show('home')">🏡 Ana Sayfa</button>
+    <button onclick="show('field')">🌳 Tarlam ve Ağaçlar</button>
+    <button onclick="show('memorize')">📖 Ezber Kaydı</button>
+    <button onclick="show('repeat')">🔁 Tekrar Programı</button>
+    <button onclick="show('progress')">📊 İlerlemem</button>
+    <button onclick="show('meal')">📚 Kur’an ve Meal</button>
     <button onclick="show('settings')">⚙️ Ayarlar</button>
-    <p class="small">Her gün bir yaprak daha. 💙</p>
-  </div>
+    <p class="small">Her gün yeni bir başlangıç. 💙</p>
+  </nav>
 </div>
+
 <footer>بِسْمِ اللَّهِ · Hafızlık Bahçem 🌸</footer>
 
 <script>
-const $=id=>document.getElementById(id);
-const today=new Date();
-const todayString=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
-$('date').value=todayString;
-$('repeatDate').value=todayString;
+'use strict';
+
+const $ = id => document.getElementById(id);
+const pageIds = ['home','field','memorize','repeat','progress','meal','settings'];
+
+function localDateString(date = new Date()) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth()+1).padStart(2,'0');
+  const d = String(date.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
+}
+const todayString = localDateString();
 
 let data;
 try {
-  data=JSON.parse(localStorage.getItem('hafizlikBahcemV1'))||{};
-} catch(e) { data={}; }
-if(!data.entries)data.entries={};
-if(!Array.isArray(data.repeats))data.repeats=[];
-if(!Array.isArray(data.meals))data.meals=[];
-if(!data.goal)data.goal=5;
-if(data.restDay===undefined)data.restDay='5';
-$('goal').value=data.goal;
-$('restDay').value=String(data.restDay);
-
-function persist(){
-  try {localStorage.setItem('hafizlikBahcemV1',JSON.stringify(data));}
-  catch(e){alert('Kayıt yapılamadı. Tarayıcı depolama ayarlarını kontrol et.');}
+  data = JSON.parse(localStorage.getItem('hafizlikBahcemV1')) || {};
+} catch (e) {
+  data = {};
 }
-function menu(open){$('drawer').classList.toggle('hidden',!open);}
-function show(id){
-  ['home','memorize','repeat','progress','meal','settings'].forEach(x=>$(x).classList.toggle('hidden',x!==id));
+if (!data.entries || typeof data.entries !== 'object' || Array.isArray(data.entries)) data.entries = {};
+if (!Array.isArray(data.repeats)) data.repeats = [];
+if (!Array.isArray(data.meals)) data.meals = [];
+if (!Number(data.goal) || Number(data.goal) < 1) data.goal = 5;
+if (data.restDay === undefined) data.restDay = '0';
+data.goal = Math.max(1, Math.floor(Number(data.goal) || 5));
+data.restDay = String(data.restDay);
+
+$('date').value = todayString;
+$('repeatDate').value = todayString;
+$('goal').value = data.goal;
+$('restDay').value = data.restDay;
+
+function persist() {
+  try {
+    localStorage.setItem('hafizlikBahcemV1', JSON.stringify(data));
+    return true;
+  } catch (e) {
+    alert('Kayıt yapılamadı. Tarayıcı depolama ayarlarını kontrol et.');
+    return false;
+  }
+}
+
+function menu(open) {
+  $('drawer').classList.toggle('hidden', !open);
+}
+
+function show(id) {
+  if (!pageIds.includes(id)) return;
+  pageIds.forEach(x => $(x).classList.toggle('hidden', x !== id));
   menu(false);
   render();
   window.scrollTo(0,0);
 }
-function saveSettings(){
-  data.goal=Math.max(1,Number($('goal').value)||5);
-  data.restDay=$('restDay').value;
-  persist();$('settingsMsg').textContent='Ayarların kaydedildi. 🌸';render();
+
+function saveSettings() {
+  data.goal = Math.max(1, Math.floor(Number($('goal').value) || 5));
+  data.restDay = $('restDay').value;
+  persist();
+  $('settingsMsg').textContent = 'Ayarların kaydedildi. 🌸';
+  render();
 }
-$('entryForm').addEventListener('submit',e=>{
+
+$('entryForm').addEventListener('submit', e => {
   e.preventDefault();
-  const d=$('date').value;
-  data.entries[d]={pages:Math.max(0,Number($('pages').value)||0),juz:Math.max(0,Number($('juz').value)||0)};
-  persist();$('entryMsg').textContent='Ezberin kaydedildi. Allah kabul etsin! 💙';render();
+  const d = $('date').value;
+  if (!d) return;
+  data.entries[d] = {
+    pages: Math.max(0, Math.floor(Number($('pages').value) || 0)),
+    juz: Math.max(0, Number($('juz').value) || 0)
+  };
+  persist();
+  $('entryMsg').textContent = 'Ezberin kaydedildi. Allah kabul etsin! 💙';
+  render();
 });
-$('date').addEventListener('change',()=>{
-  const e=data.entries[$('date').value]||{pages:0,juz:0};
-  $('pages').value=e.pages;$('juz').value=e.juz;
+
+$('date').addEventListener('change', () => {
+  const entry = data.entries[$('date').value] || {pages:0,juz:0};
+  $('pages').value = entry.pages;
+  $('juz').value = entry.juz;
 });
-$('repeatForm').addEventListener('submit',e=>{
+
+$('repeatForm').addEventListener('submit', e => {
   e.preventDefault();
-  data.repeats.push({date:$('repeatDate').value,pages:$('repeatPages').value,count:Number($('repeatCount').value)||1,note:$('repeatNote').value});
-  persist();$('repeatForm').reset();$('repeatDate').value=todayString;$('repeatCount').value=1;render();
+  data.repeats.push({
+    id: Date.now() + Math.random(),
+    date: $('repeatDate').value,
+    pages: $('repeatPages').value.trim(),
+    count: Math.max(1, Math.floor(Number($('repeatCount').value) || 1)),
+    note: $('repeatNote').value.trim()
+  });
+  persist();
+  $('repeatForm').reset();
+  $('repeatDate').value = todayString;
+  $('repeatCount').value = 1;
+  render();
 });
-$('mealForm').addEventListener('submit',e=>{
+
+$('mealForm').addEventListener('submit', e => {
   e.preventDefault();
-  data.meals.push({surah:$('surah').value,type:$('mealType').value,text:$('mealText').value,share:$('shareMeal').checked});
-  persist();$('mealForm').reset();render();
+  data.meals.push({
+    id: Date.now() + Math.random(),
+    surah: $('surah').value.trim(),
+    type: $('mealType').value,
+    text: $('mealText').value.trim(),
+    share: $('shareMeal').checked
+  });
+  persist();
+  $('mealForm').reset();
+  render();
 });
-function render(){
-  const entries=Object.entries(data.entries);
-  const pages=entries.reduce((s,[,v])=>s+(Number(v.pages)||0),0);
-  const juz=entries.reduce((s,[,v])=>s+(Number(v.juz)||0),0);
-  const todayEntry=data.entries[todayString]||{pages:0};
-  const pct=Math.min(100,Math.round((Number(todayEntry.pages)||0)/(Number(data.goal)||5)*100));
-  $('bar').style.width=pct+'%';$('progressBar').style.width=pct+'%';
-  $('progressText').textContent='Bugün hedefinin %'+pct+' tamamlandı.';
-  $('totalPages').textContent='Toplam ezber: '+pages+' sayfa';
-  $('totalJuz').textContent='Toplam cüz: '+juz;
-  $('goalText').textContent='Günlük hedef: '+data.goal+' sayfa';
-  $('history').innerHTML=entries.length?entries.sort((a,b)=>b[0].localeCompare(a[0])).map(([d,v])=>'<div class="item">'+d+' — '+v.pages+' sayfa, '+v.juz+' cüz</div>').join(''):'Henüz ezber kaydı yok.';
-  $('repeatList').innerHTML=data.repeats.length?data.repeats.slice().reverse().map(r=>'<div class="item"><strong>'+esc(r.date)+' — '+esc(r.pages)+'</strong><br>'+r.count+' tekrar'+(r.note?'<br>'+esc(r.note):'')+'</div>').join(''):'Henüz tekrar kaydı yok.';
-  $('mealList').innerHTML=data.meals.length?data.meals.slice().reverse().map(m=>'<div class="item"><strong>'+esc(m.surah)+' · '+esc(m.type)+'</strong><p>'+esc(m.text)+'</p><span class="small">'+(m.share?'Paylaşım için işaretlendi':'Kişisel kayıt')+'</span></div>').join(''):'Henüz meal notu yok.';
+
+function esc(value) {
+  return String(value ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
 }
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+function completedGoalCount() {
+  const goal = Number(data.goal) || 5;
+  return Object.entries(data.entries).filter(([,entry]) =>
+    Number(entry.pages) >= goal
+  ).length;
+}
+
+function getTreeState() {
+  const goal = Number(data.goal) || 5;
+  const entries = data.entries;
+  let completed = 0;
+  let missedPreviousDay = false;
+
+  for (const [date, entry] of Object.entries(entries)) {
+    if (Number(entry.pages) >= goal) completed++;
+  }
+
+  // Geçmişte hedef kaçırılan çalışma günlerini belirle.
+  // Bugünün hedefi tamamlanmadı diye gün bitmeden ağaç solmaz.
+  const today = new Date();
+  const todayDay = today.getDay();
+  const todayEntry = entries[todayString];
+  let check = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+  for (let i = 1; i <= 7; i++) {
+    check.setDate(check.getDate() - 1);
+    if (check.getDay() === Number(data.restDay)) continue;
+    const key = localDateString(check);
+    const entry = entries[key];
+    if (!entry || Number(entry.pages) < goal) {
+      missedPreviousDay = true;
+    }
+    break;
+  }
+
+  const todayDone = !!todayEntry && Number(todayEntry.pages) >= goal;
+  const treeCount = Math.max(1, Math.floor(completed / 5) + 1);
+  const wilted = missedPreviousDay && !todayDone;
+  return {completed,treeCount,wilted,todayDone};
+}
+
+function renderTrees() {
+  const state = getTreeState();
+  const icons = [];
+
+  for (let i = 0; i < Math.min(state.treeCount, 20); i++) {
+    if (state.wilted) icons.push('🍂');
+    else if (i < Math.floor(state.completed / 5)) icons.push('🌳');
+    else if (state.completed >= 2) icons.push('🌿');
+    else icons.push('🌱');
+  }
+
+  $('myTrees').textContent = icons.join(' ');
+  $('treeStatus').textContent = state.wilted
+    ? 'Ağacın dinleniyor; yeniden canlanabilir. 💙'
+    : state.completed >= 5
+      ? 'Maşallah, ağacın büyüyor! 🌳'
+      : 'Fidanın büyümeye hazır. 🌱';
+
+  $('treeMessage').textContent = state.wilted
+    ? 'Bir sonraki hedefini tamamlayınca ağacın yeniden yeşillenecek.'
+    : state.todayDone
+      ? 'Bugünkü hedefini tamamladın. Allah kabul etsin! 💙'
+      : 'Bugün küçük bir adım at; her sayfa kıymetli.';
+
+  $('treeDays').textContent = 'Tamamlanan hedef günü: ' + state.completed;
+  const todayPages = Number((data.entries[todayString] || {}).pages) || 0;
+  $('fieldBar').style.width = Math.min(100, Math.round(todayPages / (Number(data.goal)||5) * 100)) + '%';
+  $('fieldGoal').textContent = 'Bugünkü ezber: ' + todayPages + ' / ' + data.goal + ' sayfa';
+}
+
+function render() {
+  const entries = Object.entries(data.entries).sort((a,b) => b[0].localeCompare(a[0]));
+  const pages = entries.reduce((sum,[,v]) => sum + (Number(v.pages)||0), 0);
+  const juz = entries.reduce((sum,[,v]) => sum + (Number(v.juz)||0), 0);
+  const todayEntry = data.entries[todayString] || {pages:0};
+  const pct = Math.min(100, Math.round((Number(todayEntry.pages)||0) / (Number(data.goal)||5) * 100));
+
+  if ($('progressBar')) $('progressBar').style.width = pct + '%';
+  if ($('todayProgress')) $('todayProgress').textContent = 'Bugünkü hedef: %' + pct;
+  if ($('totalPages')) $('totalPages').textContent = 'Toplam ezber: ' + pages + ' sayfa';
+  if ($('totalJuz')) $('totalJuz').textContent = 'Toplam cüz: ' + juz;
+  if ($('goalText')) $('goalText').textContent = 'Günlük hedef: ' + data.goal + ' sayfa';
+
+  $('history').innerHTML = entries.length
+    ? entries.map(([d,v]) =>
+        '<div class="item"><strong>' + esc(d) + '</strong> — ' +
+        esc(v.pages) + ' sayfa, ' + esc(v.juz) + ' cüz</div>'
+      ).join('')
+    : 'Henüz ezber kaydı yok.';
+
+  $('repeatList').innerHTML = data.repeats.length
+    ? data.repeats.slice().reverse().map((r,i) =>
+        '<div class="item"><strong>' + esc(r.date) + ' — ' + esc(r.pages) +
+        '</strong><br>' + esc(r.count) + ' tekrar' +
+        (r.note ? '<br>' + esc(r.note) : '') +
+        '<div class="rowBtns"><button class="danger" onclick="deleteRepeat(' +
+        (data.repeats.length-1-i) + ')">Kaydı sil</button></div></div>'
+      ).join('')
+    : 'Henüz tekrar kaydı yok.';
+
+  $('mealList').innerHTML = data.meals.length
+    ? data.meals.slice().reverse().map((m,i) =>
+        '<div class="item"><strong>' + esc(m.surah) + ' · ' + esc(m.type) +
+        '</strong><p>' + esc(m.text) + '</p><span class="small">' +
+        (m.share ? 'Paylaşım için işaretlendi' : 'Kişisel kayıt') +
+        '</span><div class="rowBtns"><button class="danger" onclick="deleteMeal(' +
+        (data.meals.length-1-i) + ')">Kaydı sil</button></div></div>'
+      ).join('')
+    : 'Henüz meal notu yok.';
+
+  renderTrees();
+}
+
+function deleteRepeat(index) {
+  if (!confirm('Bu tekrar kaydını silmek istiyor musun?')) return;
+  data.repeats.splice(index,1);
+  persist();
+  render();
+}
+
+function deleteMeal(index) {
+  if (!confirm('Bu meal notunu silmek istiyor musun?')) return;
+  data.meals.splice(index,1);
+  persist();
+  render();
+}
+
 render();
 </script>
 </body>
