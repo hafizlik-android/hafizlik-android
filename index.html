@@ -115,14 +115,8 @@ function render(){
 
  $('restDay').value = data.restDay === undefined ? '5' : String(data.restDay);
  const selectedDate = new Date($('date').value + 'T12:00:00');
-const isFriday = selectedDate.getDay() === Number($('restDay').value);f
- if (selectedDate.getDay() === 5) {
-   $('todayText').textContent = '🌿 Bugün cuma, dinlenme günün. Allah kabul etsin!';
-   $('bar').style.width = '0%';
-   $('percent').textContent = 'Bugün günlük hedef zorunlu değil.';
-   $('msg').textContent = 'Dinlenebilir veya önceki ezberlerini tekrar edebilirsin.';
-   return;
- }
+const isFriday = selectedDate.getDay() === Number($('restDay').value);
+
 
  const e=data.entries[$('date').value]||{pages:0,juz:0};
 $('todayText').textContent = isFriday ? '🌿 Bugün cuma, dinlenme günün!' : 'Bugün: '+e.pages+' sayfa, '+e.juz+' cüz.';
