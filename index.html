@@ -100,11 +100,22 @@ function persist(){
  catch(e) { $('msg').textContent='Tarayıcı kayıt yapamadı. Lütfen ayarlarını kontrol et.'; }
 }
 function render(){
+
+ const selectedDate = new Date($('date').value + 'T12:00:00');
+const isFriday = selectedDate.getDay() === 5;
+ if (selectedDate.getDay() === 5) {
+   $('todayText').textContent = '🌿 Bugün cuma, dinlenme günün. Allah kabul etsin!';
+   $('bar').style.width = '0%';
+   $('percent').textContent = 'Bugün günlük hedef zorunlu değil.';
+   $('msg').textContent = 'Dinlenebilir veya önceki ezberlerini tekrar edebilirsin.';
+   return;
+ }
+
  const e=data.entries[$('date').value]||{pages:0,juz:0};
- $('todayText').textContent='Bugün: '+e.pages+' sayfa, '+e.juz+' cüz.';
- const p=Math.min(100,Math.round(e.pages/(data.goal||5)*100));
+$('todayText').textContent = isFriday ? '🌿 Bugün cuma, dinlenme günün!' : 'Bugün: '+e.pages+' sayfa, '+e.juz+' cüz.';
+const p=isFriday?0:Math.min(100,Math.round(e.pages/(data.goal||5)*100));
  $('bar').style.width=p+'%';
- $('percent').textContent='Hedefin %'+p+'ı tamamlandı.';
+$('percent').textContent=isFriday?'Bugün dinlenme günü!':'Hedefin %'+p+'ı tamamlandı.';
  const entries=Object.entries(data.entries);
  const pages=entries.reduce((s,[,v])=>s+v.pages,0);
  const juz=entries.reduce((s,[,v])=>s+v.juz,0);
