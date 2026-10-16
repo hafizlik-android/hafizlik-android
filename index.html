@@ -2,93 +2,123 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hafızlık Bahçem</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #eef6ff;
-      color: #23466d;
-    }
-    header {
-      background: linear-gradient(135deg, #74a9e8, #b9dcff);
-      text-align: center;
-      padding: 30px 15px;
-      border-radius: 0 0 28px 28px;
-    }
-    header h1 { margin: 0 0 8px; }
-    main { max-width: 650px; margin: auto; padding: 18px; }
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 14px 0;
-      border-radius: 18px;
-      box-shadow: 0 4px 14px #b4cce533;
-    }
-    h2 { color: #356da8; }
-    button {
-      background: #477fbd;
-      color: white;
-      border: 0;
-      padding: 12px 16px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #c4d9ef;
-      border-radius: 10px;
-      font: inherit;
-    }
-    .muted { color: #617c98; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hafızlık Bahçem</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#eef6ff;color:#23466d}
+header{background:linear-gradient(135deg,#6fa5e5,#c5e3ff);padding:28px 15px;text-align:center;border-radius:0 0 28px 28px}
+main{max-width:650px;margin:auto;padding:16px}
+.card{background:white;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 4px 14px #b4cce533}
+h2{color:#356da8;margin-top:0}
+input,select{width:100%;padding:12px;margin:7px 0 13px;border:1px solid #c4d9ef;border-radius:10px;font-size:16px}
+button{background:#477fbd;color:white;border:0;padding:12px 16px;border-radius:10px;cursor:pointer;font-size:15px}
+.progress{height:14px;background:#e1edfa;border-radius:20px;overflow:hidden}
+#bar{height:100%;width:0;background:#5b9bd5;transition:width .3s}
+.small{color:#617c98;font-size:14px}
+.entry{padding:10px 0;border-bottom:1px solid #e7eff8}
+</style>
 </head>
 <body>
-  <header>
-    <h1>🌿 Hafızlık Bahçem</h1>
-    <p>Her ayet bir çiçek, her tekrar bir umut.</p>
-  </header>
+<header>
+<h1>🌿 Hafızlık Bahçem</h1>
+<p>Her ayet bir çiçek, her tekrar bir umut.</p>
+</header>
+<main>
+<section class="card">
+<h2>🎯 Günlük ezber hedefim</h2>
+<label for="goal">Günlük hedef (sayfa)</label>
+<input id="goal" type="number" min="1" value="5">
+<button onclick="saveGoal()">Hedefimi kaydet</button>
+<p id="goalMsg" class="small"></p>
+</section>
 
-  <main>
-    <section class="card">
-      <h2>📖 Hafızlık yolculuğum</h2>
-      <p>Bugün Kur'an-ı Kerim ile kendine güzel bir zaman ayır.</p>
-      <label for="pages">Bugün ezberlediğim sayfa sayısı</label>
-      <input id="pages" type="number" min="0" placeholder="Örn. 5">
-      <button onclick="savePages()">Kaydet</button>
-      <p id="result" class="muted">Bugünkü emeğin burada görünecek.</p>
-    </section>
+<section class="card">
+<h2>📖 Bugünkü ezberim</h2>
+<label for="date">Tarih</label>
+<input id="date" type="date">
+<label for="pages">Ezberlediğim sayfa</label>
+<input id="pages" type="number" min="0" value="0">
+<label for="juz">Ezberlediğim cüz</label>
+<select id="juz">
+<option value="0">Cüz ezberlemedim</option>
+<option value="0.25">Çeyrek cüz</option>
+<option value="0.5">Yarım cüz</option>
+<option value="1">1 cüz</option>
+<option value="2">2 cüz</option>
+<option value="3">3 cüz</option>
+</select>
+<button onclick="saveEntry()">Ezberimi kaydet</button>
+<p id="msg" class="small"></p>
+</section>
 
-    <section class="card">
-      <h2>🌸 Günün hatırlatması</h2>
-      <p>“Şüphesiz güçlükle beraber bir kolaylık vardır.”</p>
-      <p class="muted">İnşirah Suresi, 6. ayet</p>
-    </section>
+<section class="card">
+<h2>🌸 Günlük ilerlemem</h2>
+<p id="todayText">Bugünkü ilerlemen burada görünecek.</p>
+<div class="progress"><div id="bar"></div></div>
+<p id="percent" class="small">Hedefin %0'ı tamamlandı.</p>
+</section>
 
-    <section class="card">
-      <h2>📝 Bahçeme notum</h2>
-      <textarea id="note" rows="4" placeholder="Bugünkü hedefini veya düşüncelerini yaz..."></textarea>
-      <button onclick="saveNote()">Notumu göster</button>
-      <p id="noteResult" class="muted"></p>
-    </section>
-  </main>
+<section class="card">
+<h2>🌱 Toplam ilerlemem</h2>
+<p id="totalPages">Toplam ezber: 0 sayfa</p>
+<p id="totalJuz">Toplam cüz: 0</p>
+</section>
 
-  <script>
-    function savePages() {
-      const pages = document.getElementById('pages').value;
-      document.getElementById('result').textContent =
-        pages === '' ? 'Lütfen sayfa sayısını yaz.' :
-        'Bugün ' + pages + ' sayfa için emek verdin. Allah kabul etsin! 💙';
-    }
-    function saveNote() {
-      document.getElementById('noteResult').textContent =
-        document.getElementById('note').value || 'Henüz not yazmadın.';
-    }
-  </script>
+<section class="card">
+<h2>🗓️ Ezber geçmişim</h2>
+<div id="history" class="small">Henüz kayıt yok.</div>
+</section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const today = new Date();
+$('date').value = new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+let data;
+try { data = JSON.parse(localStorage.getItem('hafizlikBahcemV1')) || {goal:5,entries:{}}; }
+catch(e) { data = {goal:5,entries:{}}; }
+$('goal').value = data.goal || 5;
+
+function saveGoal(){
+ const g = Math.max(1,Number($('goal').value)||1);
+ data.goal=g;
+ persist();
+ $('goalMsg').textContent='Günlük hedefin '+g+' sayfa olarak kaydedildi. 💙';
+ render();
+}
+function saveEntry(){
+ const d=$('date').value;
+ if(!d){$('msg').textContent='Lütfen tarih seç.';return;}
+ data.entries[d]={pages:Math.max(0,Number($('pages').value)||0),juz:Math.max(0,Number($('juz').value)||0)};
+ persist();
+ $('msg').textContent='Ezberin kaydedildi. Allah kabul etsin! 🌸';
+ render();
+}
+function persist(){
+ try { localStorage.setItem('hafizlikBahcemV1',JSON.stringify(data)); }
+ catch(e) { $('msg').textContent='Tarayıcı kayıt yapamadı. Lütfen ayarlarını kontrol et.'; }
+}
+function render(){
+ const e=data.entries[$('date').value]||{pages:0,juz:0};
+ $('todayText').textContent='Bugün: '+e.pages+' sayfa, '+e.juz+' cüz.';
+ const p=Math.min(100,Math.round(e.pages/(data.goal||5)*100));
+ $('bar').style.width=p+'%';
+ $('percent').textContent='Hedefin %'+p+'ı tamamlandı.';
+ const entries=Object.entries(data.entries);
+ const pages=entries.reduce((s,[,v])=>s+v.pages,0);
+ const juz=entries.reduce((s,[,v])=>s+v.juz,0);
+ $('totalPages').textContent='Toplam ezber: '+pages+' sayfa';
+ $('totalJuz').textContent='Toplam cüz: '+juz;
+ $('history').innerHTML=entries.length?entries.sort((a,b)=>b[0].localeCompare(a[0])).map(([d,v])=>'<div class="entry">'+d+' — '+v.pages+' sayfa, '+v.juz+' cüz</div>').join(''):'Henüz kayıt yok.';
+}
+$('date').addEventListener('change',()=>{
+ const e=data.entries[$('date').value]||{pages:0,juz:0};
+ $('pages').value=e.pages;
+ $('juz').value=String(e.juz);
+ render();
+});
+render();
+</script>
 </body>
 </html>
