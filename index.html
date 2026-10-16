@@ -1,225 +1,228 @@
 
 <!DOCTYPE html>
-<!-- Hafızlık Bahçem giriş ekranı -->
 <html lang="tr">
 <head>
-  
-<style>
-.garden-welcome {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px;
-  box-sizing: border-box;
-  color: #234c72;
-  background: linear-gradient(160deg, #eaf6ff, #c6e4f8, #f4faff);
-  font-family: Georgia, serif;
-}
-.garden-flowers {
-  font-size: 36px;
-  margin-bottom: 24px;
-}
-.garden-welcome h1 {
-  font-size: 30px;
-  margin: 12px 0;
-}
-.garden-welcome p {
-  font-size: 19px;
-  line-height: 1.8;
-}
-.garden-button {
-  margin-top: 24px;
-  padding: 14px 28px;
-  border: 0;
-  border-radius: 28px;
-  background: #3979ad;
-  color: white;
-  font-size: 17px;
-  cursor: pointer;
-}
-</style>
 <meta charset="UTF-8">
-  
-<style>
-.garden-welcome {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px;
-  box-sizing: border-box;
-  color: #234c72;
-  background: linear-gradient(160deg, #eaf6ff, #c6e4f8, #f4faff);
-  font-family: Georgia, serif;
-}
-.garden-flowers {
-  font-size: 36px;
-  margin-bottom: 24px;
-}
-.garden-button {
-  margin-top: 24px;
-  padding: 14px 28px;
-  border: 0;
-  border-radius: 28px;
-  background: #3979ad;
-  color: white;
-  font-size: 17px;
-}
-</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hafızlık Bahçem</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#eef6ff;color:#23466d}
-header{background:linear-gradient(135deg,#6fa5e5,#c5e3ff);padding:28px 15px;text-align:center;border-radius:0 0 28px 28px}
+body{margin:0;background:#edf6fc;color:#284e68;font-family:Arial,sans-serif}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px;background:#dceefa;position:sticky;top:0;z-index:5}
+.brand{font-size:20px;font-weight:bold}
+button{cursor:pointer;border:0;border-radius:14px;padding:12px 15px;background:#397eaa;color:white;font-size:15px}
+.menuBtn{font-size:25px;padding:6px 12px;background:transparent;color:#285b7b}
 main{max-width:650px;margin:auto;padding:16px}
-.card{background:white;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 4px 14px #b4cce533}
-h2{color:#356da8;margin-top:0}
-input,select{width:100%;padding:12px;margin:7px 0 13px;border:1px solid #c4d9ef;border-radius:10px;font-size:16px}
-button{background:#477fbd;color:white;border:0;padding:12px 16px;border-radius:10px;cursor:pointer;font-size:15px}
-.progress{height:14px;background:#e1edfa;border-radius:20px;overflow:hidden}
-#bar{height:100%;width:0;background:#5b9bd5;transition:width .3s}
-.small{color:#617c98;font-size:14px}
-.entry{padding:10px 0;border-bottom:1px solid #e7eff8}
+.card{background:white;border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 4px 16px #9bbbd022}
+h1,h2{color:#2d668a}
+h1{font-size:27px}
+.treebox{text-align:center;border-radius:24px;padding:20px 10px;background:linear-gradient(#dff1ff,#e5f3e4)}
+.tree{font-size:100px;line-height:1.4}
+.subtitle{line-height:1.7}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:#f0f7fc;color:#2d668a;padding:17px 10px;border-radius:17px;text-align:left;min-height:95px}
+.tile strong{display:block;font-size:17px;margin-bottom:6px}
+.tile span{font-size:13px}
+label{display:block;margin:13px 0 6px;font-weight:bold}
+input,select,textarea{width:100%;padding:12px;border:1px solid #c5dce9;border-radius:12px;background:white;font-size:16px;color:#284e68}
+textarea{min-height:90px}
+form button{margin-top:14px}
+.progress{height:12px;background:#e3edf3;border-radius:20px;overflow:hidden}
+#bar{height:100%;width:0;background:#5c9e80}
+.hidden{display:none!important}
+.drawer{position:fixed;inset:0;background:#16364a66;z-index:10}
+.drawerPanel{margin-left:auto;width:min(85%,340px);height:100%;background:#f5faff;padding:22px;overflow:auto}
+.drawerPanel button{width:100%;text-align:left;margin:5px 0;background:white;color:#285b7b}
+.close{float:right!important;width:auto!important;background:transparent!important;font-size:24px}
+.item{padding:12px 0;border-bottom:1px solid #e3edf3;overflow-wrap:anywhere}
+.small{font-size:13px;color:#648095}
+footer{text-align:center;padding:24px;color:#648095}
 </style>
 </head>
 <body>
-  
-<div class="garden-welcome" id="welcomeScreen">
-  <div class="garden-flowers">🪻 🌸 🩵 🌷</div>
-  <p>Bismillahirrahmanirrahim</p>
-  <h1>Hafızlık Bahçem</h1>
-  <p>Kur'an ile güzelleşen bahçene hoş geldin. 💙</p>
-  <p>Her ezber bir çiçek, her tekrar bir güzellik...</p>
-  <button class="garden-button" onclick="document.getElementById('welcomeScreen').style.display='none'">
-    Bahçeme Gir 🌿
-  </button>
-</div>
-```
-
-**Dikkat:** Mevcut `<body>` satırını ve altındaki kodları silme. Bu yeni kod, `<body>` satırının altında ve eski uygulama kodlarının üstünde olmalı.
-
-Ekledikten sonra bana **“Ekledim”** yaz. Sonra kaydetme adımına birlikte geçeceğiz. 🌷
 <header>
-<h1>🌿 Hafızlık Bahçem</h1>
-<p>Her ayet bir çiçek, her tekrar bir umut.</p>
+  <div class="brand">🌸 Hafızlık Bahçem</div>
+  <button class="menuBtn" onclick="menu(true)" aria-label="Menüyü aç">☰</button>
 </header>
+
 <main>
-<section class="card">
-<h2>🎯 Günlük ezber hedefim</h2>
-<label for="goal">Günlük hedef (sayfa)</label>
-<input id="goal" type="number" min="1" value="5">
-
-<label for="restDay">🌿 Dinlenme günümü seç:</label>
-<select id="restDay" onchange="data.restDay=this.value;localStorage.setItem('hafizlikBahcemV1',JSON.stringify(data));render()">
-  <option value="0">Pazar</option>
-  <option value="1">Pazartesi</option>
-  <option value="2">Salı</option>
-  <option value="3">Çarşamba</option>
-  <option value="4">Perşembe</option>
-  <option value="5" selected>Cuma</option>
-  <option value="6">Cumartesi</option>
-</select>
-
- <button onclick="saveGoal()">Hedefimi kaydet</button>
-<p id="goalMsg" class="small"></p>
+<section id="home">
+  <div class="treebox card">
+    <div style="font-size:14px">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="tree">🌳</div>
+    <h1>Benim Hafızlık Ağacım</h1>
+    <p class="subtitle">Her ezber bir yaprak, her tekrar ağacına güç katar. 💙</p>
+    <div class="progress"><div id="bar"></div></div>
+    <p id="progressText">Bahçendeki yolculuğun başlıyor.</p>
+  </div>
+  <div class="grid">
+    <button class="tile" onclick="show('memorize')">📖<strong>Ezber</strong><span>Yeni ezberini kaydet</span></button>
+    <button class="tile" onclick="show('repeat')">🔁<strong>Tekrar</strong><span>Tekrarlarını takip et</span></button>
+    <button class="tile" onclick="show('progress')">🌿<strong>İlerlemem</strong><span>Sayfalarını ve cüzlerini gör</span></button>
+    <button class="tile" onclick="show('meal')">📚<strong>Kur’an ve Meal</strong><span>Meal notlarını ekle</span></button>
+  </div>
+  <div class="card">
+    <h2>🌷 Bugünün niyeti</h2>
+    <p>Az da olsa devamlı yapılan güzel ameller çok kıymetlidir.</p>
+    <p class="small">Bugün kendin için küçük bir adım at.</p>
+  </div>
 </section>
 
-<section class="card">
-<h2>📖 Bugünkü ezberim</h2>
-<label for="date">Tarih</label>
-<input id="date" type="date">
-<label for="pages">Ezberlediğim sayfa</label>
-<input id="pages" type="number" min="0" value="0">
-<label for="juz">Ezberlediğim cüz</label>
-<select id="juz">
-<option value="0">Cüz ezberlemedim</option>
-<option value="0.25">Çeyrek cüz</option>
-<option value="0.5">Yarım cüz</option>
-<option value="1">1 cüz</option>
-<option value="2">2 cüz</option>
-<option value="3">3 cüz</option>
-</select>
-<button onclick="saveEntry()">Ezberimi kaydet</button>
-<p id="msg" class="small"></p>
+<section id="memorize" class="hidden">
+  <div class="card">
+    <h1>📖 Ezber kaydı</h1>
+    <form id="entryForm">
+      <label for="date">Tarih</label><input id="date" type="date" required>
+      <label for="pages">Ezberlenen sayfa</label><input id="pages" type="number" min="0" value="0">
+      <label for="juz">Ezberlenen cüz</label><input id="juz" type="number" min="0" step="0.1" value="0">
+      <button type="submit">Ezberimi kaydet 💙</button>
+    </form>
+    <p id="entryMsg"></p>
+  </div>
 </section>
 
-<section class="card">
-<h2>🌸 Günlük ilerlemem</h2>
-<p id="todayText">Bugünkü ilerlemen burada görünecek.</p>
-<div class="progress"><div id="bar"></div></div>
-<p id="percent" class="small">Hedefin %0'ı tamamlandı.</p>
+<section id="repeat" class="hidden">
+  <div class="card">
+    <h1>🔁 Tekrar bahçesi</h1>
+    <form id="repeatForm">
+      <label for="repeatDate">Tekrar tarihi</label><input id="repeatDate" type="date" required>
+      <label for="repeatPages">Tekrar edilen sayfa aralığı veya adı</label><input id="repeatPages" placeholder="Örn. Bakara 1–10 veya 25. sayfa" required>
+      <label for="repeatCount">Tekrar sayısı</label><input id="repeatCount" type="number" min="1" value="1" required>
+      <label for="repeatNote">Not</label><textarea id="repeatNote" placeholder="Zorlandığın yerler, hatırlatmalar..."></textarea>
+      <button type="submit">Tekrarı kaydet</button>
+    </form>
+    <h2>Tekrar geçmişim</h2><div id="repeatList"></div>
+  </div>
 </section>
 
-<section class="card">
-<h2>🌱 Toplam ilerlemem</h2>
-<p id="totalPages">Toplam ezber: 0 sayfa</p>
-<p id="totalJuz">Toplam cüz: 0</p>
+<section id="progress" class="hidden">
+  <div class="card">
+    <h1>🌿 İlerlemem</h1>
+    <p id="totalPages">Toplam ezber: 0 sayfa</p>
+    <p id="totalJuz">Toplam cüz: 0</p>
+    <p id="goalText">Günlük hedef: 5 sayfa</p>
+    <div class="progress"><div id="progressBar" style="width:0"></div></div>
+    <h2>Ezber geçmişim</h2><div id="history"></div>
+  </div>
 </section>
 
-<section class="card">
-<h2>🗓️ Ezber geçmişim</h2>
-<div id="history" class="small">Henüz kayıt yok.</div>
+<section id="meal" class="hidden">
+  <div class="card">
+    <h1>📚 Kur’an ve Meal</h1>
+    <p class="small">Kendi meal notlarını ekleyebilir, tam meal veya kırık meal biçiminde kaydedebilirsin. Buraya yazdığın içerik kendiliğinden doğrulanmış Kur’an meali değildir.</p>
+    <form id="mealForm">
+      <label for="surah">Sure adı ve ayet</label><input id="surah" placeholder="Örn. Fatiha 1" required>
+      <label for="mealType">Gösterim biçimi</label>
+      <select id="mealType"><option value="Tam meal">Tam meal</option><option value="Kırık meal">Kırık meal</option></select>
+      <label for="mealText">Meal veya kişisel notun</label><textarea id="mealText" required></textarea>
+      <label><input id="shareMeal" type="checkbox" style="width:auto"> Toplulukta paylaşmak üzere işaretle</label>
+      <button type="submit">Meal notunu kaydet</button>
+    </form>
+    <p class="small">Paylaşım seçeneği şimdilik yalnızca tercihini kaydeder; herkese açık paylaşım özelliği henüz bağlı değil.</p>
+    <h2>Kaydettiğim mealler</h2><div id="mealList"></div>
+  </div>
+</section>
+
+<section id="settings" class="hidden">
+  <div class="card">
+    <h1>⚙️ Ayarlar</h1>
+    <label for="goal">Günlük ezber hedefi (sayfa)</label><input id="goal" type="number" min="1" value="5">
+    <label for="restDay">Dinlenme günü</label>
+    <select id="restDay">
+      <option value="0">Pazar</option><option value="1">Pazartesi</option><option value="2">Salı</option><option value="3">Çarşamba</option><option value="4">Perşembe</option><option value="5">Cuma</option><option value="6">Cumartesi</option>
+    </select>
+    <button onclick="saveSettings()">Ayarları kaydet</button>
+    <p id="settingsMsg"></p>
+  </div>
 </section>
 </main>
+
+<div id="drawer" class="drawer hidden" onclick="if(event.target===this)menu(false)">
+  <div class="drawerPanel">
+    <button class="close" onclick="menu(false)">✕</button>
+    <h2>🌸 Bahçem</h2>
+    <button onclick="show('home')">🏡 Ana sayfa</button>
+    <button onclick="show('memorize')">📖 Ezber kaydı</button>
+    <button onclick="show('repeat')">🔁 Tekrar programı</button>
+    <button onclick="show('progress')">🌿 İlerlemem</button>
+    <button onclick="show('meal')">📚 Kur’an ve meal</button>
+    <button onclick="show('settings')">⚙️ Ayarlar</button>
+    <p class="small">Her gün bir yaprak daha. 💙</p>
+  </div>
+</div>
+<footer>بِسْمِ اللَّهِ · Hafızlık Bahçem 🌸</footer>
+
 <script>
-const $ = id => document.getElementById(id);
-const today = new Date();
-$('date').value = new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+const $=id=>document.getElementById(id);
+const today=new Date();
+const todayString=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+$('date').value=todayString;
+$('repeatDate').value=todayString;
+
 let data;
-try { data = JSON.parse(localStorage.getItem('hafizlikBahcemV1')) || {goal:5,entries:{}}; }
-catch(e) { data = {goal:5,entries:{}}; }
-$('goal').value = data.goal || 5;
+try {
+  data=JSON.parse(localStorage.getItem('hafizlikBahcemV1'))||{};
+} catch(e) { data={}; }
+if(!data.entries)data.entries={};
+if(!Array.isArray(data.repeats))data.repeats=[];
+if(!Array.isArray(data.meals))data.meals=[];
+if(!data.goal)data.goal=5;
+if(data.restDay===undefined)data.restDay='5';
+$('goal').value=data.goal;
+$('restDay').value=String(data.restDay);
 
-function saveGoal(){
- const g = Math.max(1,Number($('goal').value)||1);
- data.goal=g;
- persist();
- $('goalMsg').textContent='Günlük hedefin '+g+' sayfa olarak kaydedildi. 💙';
- render();
-}
-function saveEntry(){
- const d=$('date').value;
- if(!d){$('msg').textContent='Lütfen tarih seç.';return;}
- data.entries[d]={pages:Math.max(0,Number($('pages').value)||0),juz:Math.max(0,Number($('juz').value)||0)};
- persist();
- $('msg').textContent='Ezberin kaydedildi. Allah kabul etsin! 🌸';
- render();
-}
 function persist(){
- try { localStorage.setItem('hafizlikBahcemV1',JSON.stringify(data)); }
- catch(e) { $('msg').textContent='Tarayıcı kayıt yapamadı. Lütfen ayarlarını kontrol et.'; }
+  try {localStorage.setItem('hafizlikBahcemV1',JSON.stringify(data));}
+  catch(e){alert('Kayıt yapılamadı. Tarayıcı depolama ayarlarını kontrol et.');}
 }
-function render(){
-
- $('restDay').value = data.restDay === undefined ? '5' : String(data.restDay);
- const selectedDate = new Date($('date').value + 'T12:00:00');
-const isFriday = selectedDate.getDay() === Number($('restDay').value);
-
-
- const e=data.entries[$('date').value]||{pages:0,juz:0};
-$('todayText').textContent = isFriday ? '🌿 Bugün cuma, dinlenme günün!' : 'Bugün: '+e.pages+' sayfa, '+e.juz+' cüz.';
-const p=isFriday?0:Math.min(100,Math.round(e.pages/(data.goal||5)*100));
- $('bar').style.width=p+'%';
-$('percent').textContent=isFriday?'Bugün dinlenme günü!':'Hedefin %'+p+'ı tamamlandı.';
- const entries=Object.entries(data.entries);
- const pages=entries.reduce((s,[,v])=>s+v.pages,0);
- const juz=entries.reduce((s,[,v])=>s+v.juz,0);
- $('totalPages').textContent='Toplam ezber: '+pages+' sayfa';
- $('totalJuz').textContent='Toplam cüz: '+juz;
- $('history').innerHTML=entries.length?entries.sort((a,b)=>b[0].localeCompare(a[0])).map(([d,v])=>'<div class="entry">'+d+' — '+v.pages+' sayfa, '+v.juz+' cüz</div>').join(''):'Henüz kayıt yok.';
+function menu(open){$('drawer').classList.toggle('hidden',!open);}
+function show(id){
+  ['home','memorize','repeat','progress','meal','settings'].forEach(x=>$(x).classList.toggle('hidden',x!==id));
+  menu(false);
+  render();
+  window.scrollTo(0,0);
 }
-$('date').addEventListener('change',()=>{
- const e=data.entries[$('date').value]||{pages:0,juz:0};
- $('pages').value=e.pages;
- $('juz').value=String(e.juz);
- render();
+function saveSettings(){
+  data.goal=Math.max(1,Number($('goal').value)||5);
+  data.restDay=$('restDay').value;
+  persist();$('settingsMsg').textContent='Ayarların kaydedildi. 🌸';render();
+}
+$('entryForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const d=$('date').value;
+  data.entries[d]={pages:Math.max(0,Number($('pages').value)||0),juz:Math.max(0,Number($('juz').value)||0)};
+  persist();$('entryMsg').textContent='Ezberin kaydedildi. Allah kabul etsin! 💙';render();
 });
+$('date').addEventListener('change',()=>{
+  const e=data.entries[$('date').value]||{pages:0,juz:0};
+  $('pages').value=e.pages;$('juz').value=e.juz;
+});
+$('repeatForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  data.repeats.push({date:$('repeatDate').value,pages:$('repeatPages').value,count:Number($('repeatCount').value)||1,note:$('repeatNote').value});
+  persist();$('repeatForm').reset();$('repeatDate').value=todayString;$('repeatCount').value=1;render();
+});
+$('mealForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  data.meals.push({surah:$('surah').value,type:$('mealType').value,text:$('mealText').value,share:$('shareMeal').checked});
+  persist();$('mealForm').reset();render();
+});
+function render(){
+  const entries=Object.entries(data.entries);
+  const pages=entries.reduce((s,[,v])=>s+(Number(v.pages)||0),0);
+  const juz=entries.reduce((s,[,v])=>s+(Number(v.juz)||0),0);
+  const todayEntry=data.entries[todayString]||{pages:0};
+  const pct=Math.min(100,Math.round((Number(todayEntry.pages)||0)/(Number(data.goal)||5)*100));
+  $('bar').style.width=pct+'%';$('progressBar').style.width=pct+'%';
+  $('progressText').textContent='Bugün hedefinin %'+pct+' tamamlandı.';
+  $('totalPages').textContent='Toplam ezber: '+pages+' sayfa';
+  $('totalJuz').textContent='Toplam cüz: '+juz;
+  $('goalText').textContent='Günlük hedef: '+data.goal+' sayfa';
+  $('history').innerHTML=entries.length?entries.sort((a,b)=>b[0].localeCompare(a[0])).map(([d,v])=>'<div class="item">'+d+' — '+v.pages+' sayfa, '+v.juz+' cüz</div>').join(''):'Henüz ezber kaydı yok.';
+  $('repeatList').innerHTML=data.repeats.length?data.repeats.slice().reverse().map(r=>'<div class="item"><strong>'+esc(r.date)+' — '+esc(r.pages)+'</strong><br>'+r.count+' tekrar'+(r.note?'<br>'+esc(r.note):'')+'</div>').join(''):'Henüz tekrar kaydı yok.';
+  $('mealList').innerHTML=data.meals.length?data.meals.slice().reverse().map(m=>'<div class="item"><strong>'+esc(m.surah)+' · '+esc(m.type)+'</strong><p>'+esc(m.text)+'</p><span class="small">'+(m.share?'Paylaşım için işaretlendi':'Kişisel kayıt')+'</span></div>').join(''):'Henüz meal notu yok.';
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 render();
 </script>
 </body>
