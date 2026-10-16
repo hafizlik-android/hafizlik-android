@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafızlık Bahçem</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef6ff;
+      color: #23466d;
+    }
+    header {
+      background: linear-gradient(135deg, #74a9e8, #b9dcff);
+      text-align: center;
+      padding: 30px 15px;
+      border-radius: 0 0 28px 28px;
+    }
+    header h1 { margin: 0 0 8px; }
+    main { max-width: 650px; margin: auto; padding: 18px; }
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 14px 0;
+      border-radius: 18px;
+      box-shadow: 0 4px 14px #b4cce533;
+    }
+    h2 { color: #356da8; }
+    button {
+      background: #477fbd;
+      color: white;
+      border: 0;
+      padding: 12px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #c4d9ef;
+      border-radius: 10px;
+      font: inherit;
+    }
+    .muted { color: #617c98; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌿 Hafızlık Bahçem</h1>
+    <p>Her ayet bir çiçek, her tekrar bir umut.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>📖 Hafızlık yolculuğum</h2>
+      <p>Bugün Kur'an-ı Kerim ile kendine güzel bir zaman ayır.</p>
+      <label for="pages">Bugün ezberlediğim sayfa sayısı</label>
+      <input id="pages" type="number" min="0" placeholder="Örn. 5">
+      <button onclick="savePages()">Kaydet</button>
+      <p id="result" class="muted">Bugünkü emeğin burada görünecek.</p>
+    </section>
+
+    <section class="card">
+      <h2>🌸 Günün hatırlatması</h2>
+      <p>“Şüphesiz güçlükle beraber bir kolaylık vardır.”</p>
+      <p class="muted">İnşirah Suresi, 6. ayet</p>
+    </section>
+
+    <section class="card">
+      <h2>📝 Bahçeme notum</h2>
+      <textarea id="note" rows="4" placeholder="Bugünkü hedefini veya düşüncelerini yaz..."></textarea>
+      <button onclick="saveNote()">Notumu göster</button>
+      <p id="noteResult" class="muted"></p>
+    </section>
+  </main>
+
+  <script>
+    function savePages() {
+      const pages = document.getElementById('pages').value;
+      document.getElementById('result').textContent =
+        pages === '' ? 'Lütfen sayfa sayısını yaz.' :
+        'Bugün ' + pages + ' sayfa için emek verdin. Allah kabul etsin! 💙';
+    }
+    function saveNote() {
+      document.getElementById('noteResult').textContent =
+        document.getElementById('note').value || 'Henüz not yazmadın.';
+    }
+  </script>
+</body>
+</html>
