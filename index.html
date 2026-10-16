@@ -30,7 +30,19 @@ button{background:#477fbd;color:white;border:0;padding:12px 16px;border-radius:1
 <h2>🎯 Günlük ezber hedefim</h2>
 <label for="goal">Günlük hedef (sayfa)</label>
 <input id="goal" type="number" min="1" value="5">
-<button onclick="saveGoal()">Hedefimi kaydet</button>
+
+<label for="restDay">🌿 Dinlenme günümü seç:</label>
+<select id="restDay" onchange="data.restDay=this.value;localStorage.setItem('hafizlikBahcemV1',JSON.stringify(data));render()">
+  <option value="0">Pazar</option>
+  <option value="1">Pazartesi</option>
+  <option value="2">Salı</option>
+  <option value="3">Çarşamba</option>
+  <option value="4">Perşembe</option>
+  <option value="5" selected>Cuma</option>
+  <option value="6">Cumartesi</option>
+</select>
+
+ <button onclick="saveGoal()">Hedefimi kaydet</button>
 <p id="goalMsg" class="small"></p>
 </section>
 
@@ -101,8 +113,9 @@ function persist(){
 }
 function render(){
 
+ $('restDay').value = data.restDay === undefined ? '5' : String(data.restDay);
  const selectedDate = new Date($('date').value + 'T12:00:00');
-const isFriday = selectedDate.getDay() === 5;
+const isFriday = selectedDate.getDay() === Number($('restDay').value);f
  if (selectedDate.getDay() === 5) {
    $('todayText').textContent = '🌿 Bugün cuma, dinlenme günün. Allah kabul etsin!';
    $('bar').style.width = '0%';
